@@ -18,17 +18,39 @@ public class PruebaQytetet {
     private static ArrayList<Sorpresa> mazo = new ArrayList();
     
     private static void inicializarSorpresa(){
-        mazo.add(new Sorpresa("Te hemos pillado con chanclasy calcetines, "
-                + "lo sentimos, ¡Debes ir a la carcel!",9, 
+        //Cartas de ir a casilla
+        mazo.add(new Sorpresa("Te hemos pillado copiando en un examen, "
+                + "¡Debes ir a la carcel!",9, 
                 TipoSorpresa.IRACASILLA));
-        mazo.add(new Sorpresa("Un fan anonimo a pagado tu fianza. "
+        mazo.add(new Sorpresa("Son las 15:15 y las 15:30 tienes practicas de EC"
+                + ". Deberias ir a por un cafe antes.",12, 
+                TipoSorpresa.IRACASILLA));       
+        mazo.add(new Sorpresa("Tu profesor no ha venido y no a avisado antes."
+                + " Te toca ir a las mesas rojas",12, 
+                TipoSorpresa.IRACASILLA));
+        //Carta salir de la carcel
+        mazo.add(new Sorpresa("El director de la ETSIIT se ha apiadado de ti. "
                 + "Sales de la carcel.", 0, TipoSorpresa.SALIRCARCEL));
+        //Carta de pagar o cobrar
         mazo.add(new Sorpresa("Has suspendido PDOO en la convocatoria "
                 + "extraordinaria.¡Paga doble matricula!", -130, 
                 TipoSorpresa.PAGARCOBRAR));
         mazo.add(new Sorpresa("Has conseguido una matricula de honor. "
-                + "¡ENHORABUENA EMPOLLON!. Te devuelven dinero", 60, 
+                + "¡ENHORABUENA EMPOLLON!. Te devuelven el dinero", 66, 
                 TipoSorpresa.PAGARCOBRAR));
+        //Cartas por casa u hotel
+        mazo.add(new Sorpresa("Empieza un nuevo mes. Tienes que hacerle la "
+                + "transferencia al casero.", -180, TipoSorpresa.PORCASAHOTEL));
+        mazo.add(new Sorpresa("El fin de curso a llegado. El casero te devuelve"
+                + " la fianza.", 180, TipoSorpresa.PORCASAHOTEL));
+        //Carta por jugador
+        mazo.add(new Sorpresa("Tus compañeros te ofrecen dinero para que le "
+                + "pases las practicas. Todos hacen un bote y te lo dan"
+                , 25, TipoSorpresa.PORCASAHOTEL));
+        mazo.add(new Sorpresa("Tus compañeros te han pillado copiandote. "
+                + "Todos te piden dinero por su silencio. Te toca pagar.",
+                15, TipoSorpresa.PORCASAHOTEL));
+        
     }
     
     private static ArrayList<Sorpresa> obtenertSorpresasValorPositivo(){
