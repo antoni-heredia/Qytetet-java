@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package qytetetjava;
+package modeloqytetet;
 
 /**
  *
  * @author antonio
  */
-public class QytetetJava {
+public class PruebaQytetet {
 
     /**
      * @param args the command line arguments
