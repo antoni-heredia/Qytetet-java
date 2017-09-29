@@ -31,22 +31,59 @@ public class PruebaQytetet {
                 TipoSorpresa.PAGARCOBRAR));
     }
     
-    private static ArrayList<Sorpresa> getSorpresasValorPositivo(){
-        ArrayList<Sorpresa> sorpresas_positiva = new ArrayList();
+    private static ArrayList<Sorpresa> obtenertSorpresasValorPositivo(){
+        ArrayList<Sorpresa> sorpresasPositivas = new ArrayList();
         for(Sorpresa s : mazo){
             if(s.getValor() > 0)
-                sorpresas_positiva.add(s);
+                sorpresasPositivas.add(s);
         }
-        return sorpresas_positiva;
+        return sorpresasPositivas;
+    }
+    
+    private static ArrayList<Sorpresa> obtenerSorpresasTipoIrACasilla(){
+        ArrayList<Sorpresa> sorpresasIrACasilla = new ArrayList();
+        
+        for(Sorpresa s : mazo){
+            if(s.getTipo() == TipoSorpresa.IRACASILLA)
+                sorpresasIrACasilla.add(s);
+        }
+        
+        return sorpresasIrACasilla;
+    }
+    
+    private static ArrayList<Sorpresa> buscarSorpresasPorTipo(TipoSorpresa tipo){
+        ArrayList<Sorpresa> sorpresasTipo = new ArrayList();
+        
+        for(Sorpresa s : mazo){
+            if(s.getTipo() == tipo){
+                sorpresasTipo.add(s);
+            }
+        }
+        
+        return sorpresasTipo;
     }
     
     public static void main(String[] args) {
         // TODO code application logic here
-        
+
         PruebaQytetet.inicializarSorpresa();
-        
+        ArrayList<Sorpresa> sorpresasPositivas = PruebaQytetet.obtenertSorpresasValorPositivo();
+        ArrayList<Sorpresa> sorpresasTipoIrACasilla = PruebaQytetet.obtenerSorpresasTipoIrACasilla();
+        ArrayList<Sorpresa> sorpresasTipoIrACasillaBuscadas = PruebaQytetet.buscarSorpresasPorTipo(TipoSorpresa.PAGARCOBRAR);
+
         for(Sorpresa s : mazo){
             System.out.println(s.toString());
         }
+        for(Sorpresa s : sorpresasPositivas){
+            System.out.println(s.toString());
+        }
+        for(Sorpresa s : sorpresasTipoIrACasilla){
+            System.out.println(s.toString());
+        }
+        for(Sorpresa s : sorpresasTipoIrACasillaBuscadas){
+            System.out.println(s.toString());
+        }
+        
+        
     }
 }
