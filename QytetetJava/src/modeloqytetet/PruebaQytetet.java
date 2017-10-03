@@ -46,10 +46,10 @@ public class PruebaQytetet {
         //Carta por jugador
         mazo.add(new Sorpresa("Tus compañeros te ofrecen dinero para que le "
                 + "pases las practicas. Todos hacen un bote y te lo dan"
-                , 25, TipoSorpresa.PORCASAHOTEL));
+                , 25, TipoSorpresa.PORJUGADOR));
         mazo.add(new Sorpresa("Tus compañeros te han pillado copiandote. "
                 + "Todos te piden dinero por su silencio. Te toca pagar.",
-                15, TipoSorpresa.PORCASAHOTEL));
+                -15, TipoSorpresa.PORJUGADOR));
         
     }
     
