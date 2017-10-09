@@ -78,16 +78,14 @@ public class Casilla {
     }
     @Override
     public String toString(){
-        String stringCasilla;
+        String stringCasilla = "Casilla{\nNumero Casilla=" + numeroCasilla + "\nTipo="
+                    + tipo + "\nCoste=" + coste;
         if (tipo == TipoCasilla.CALLE){
-            stringCasilla = "Casilla{ Numero Casilla=" + numeroCasilla + "\nTipo="
-                    + tipo + "\n Coste=" + coste + "\nNumero Casas=" + numCasas 
-                    + "\nNumero Hoteles=" + numHoteles + "\n" + titulo.toString()
-                    + "\n}";
-        }else{
-            stringCasilla = "Casilla{ Numero Casilla=" + numeroCasilla + "\nTipo="
-                    + tipo + "\n}";
+            stringCasilla +=   "\nNumero Casas=" + numCasas 
+                    + "\nNumero Hoteles=" + numHoteles + "\n" + titulo.toString();
         }
+        
+        stringCasilla +=  "\n}";
         
         return stringCasilla;
     }

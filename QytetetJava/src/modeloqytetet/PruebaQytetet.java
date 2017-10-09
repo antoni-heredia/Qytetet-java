@@ -17,10 +17,12 @@ public class PruebaQytetet {
 
     private static ArrayList<Sorpresa> mazo = new ArrayList();
     
+    private static Tablero tablero = new Tablero();
+    
     private static void inicializarSorpresa(){
         //Cartas de ir a casilla
         mazo.add(new Sorpresa("Te hemos pillado copiando en un examen, "
-                + "¡Debes ir a la carcel!",9, 
+                + "¡Debes ir a la carcel!", tablero.getCarcel().getNumeroCasilla(), 
                 TipoSorpresa.IRACASILLA));
         mazo.add(new Sorpresa("Son las 15:15 y las 15:30 tienes practicas de EC"
                 + ". Deberias ir a por un cafe antes.",12, 
@@ -106,6 +108,7 @@ public class PruebaQytetet {
             System.out.println(s.toString());
         }
         
+        System.out.println(tablero.toString());
         
     }
 }
