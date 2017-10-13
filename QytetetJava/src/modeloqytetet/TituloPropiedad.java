@@ -10,25 +10,30 @@ package modeloqytetet;
  * @author jo_se
  */
 public class TituloPropiedad {
+    
     private String nombre;
-    private boolean hipotecado;
+    private boolean hipotecada;
     private int  alquilerBase;
     private float factorRevalorizacion;
     private int hipotecaBase;
     private int precioEdificar;
+    private Jugador propietario;
+    private Casilla casilla;
     
-    public TituloPropiedad(String nombre, boolean hipotecado, int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar){
+    public TituloPropiedad(String nombre, boolean hipotecado, int alquilerBase,
+            float factorRevalorizacion, int hipotecaBase, int precioEdificar){
         this.nombre = nombre;
-        this.hipotecado = hipotecado;
+        this.hipotecada = hipotecado;
         this.alquilerBase = alquilerBase;
         this.factorRevalorizacion = factorRevalorizacion;
         this.hipotecaBase = hipotecaBase;
         this.precioEdificar = precioEdificar;
     }
     //Constructor sin necesidad de decir si esta hipotecada, ya que por defecto sera false
-    public TituloPropiedad(String nombre,int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar){
+    public TituloPropiedad(String nombre,int alquilerBase, 
+            float factorRevalorizacion, int hipotecaBase, int precioEdificar){
         this.nombre = nombre;
-        this.hipotecado = false;
+        this.hipotecada = false;
         this.alquilerBase = alquilerBase;
         this.factorRevalorizacion = factorRevalorizacion;
         this.hipotecaBase = hipotecaBase;
@@ -38,7 +43,7 @@ public class TituloPropiedad {
     //Constructor indicando solo el nombre, los demas valores estaran puestos al minimo
     public TituloPropiedad(String nombre){
         this.nombre = nombre;
-        this.hipotecado = false;
+        this.hipotecada = false;
         this.alquilerBase = 50;
         this.factorRevalorizacion = (float) 0.1;
         this.hipotecaBase = 150;
@@ -49,15 +54,15 @@ public class TituloPropiedad {
         return nombre;
     }
 
-    public boolean isHipotecado() {
-        return hipotecado;
+    public boolean getHipotecada() {
+        return hipotecada;
     }
 
-    public int getAlquilerBase() {
+    int getAlquilerBase() {
         return alquilerBase;
     }
 
-    public float getFactorRevalorizacion() {
+    float getFactorRevalorizacion() {
         return factorRevalorizacion;
     }
 
@@ -69,14 +74,52 @@ public class TituloPropiedad {
         return precioEdificar;
     }
     
-    public void setHipotecado(boolean hipotecado) {
-        this.hipotecado = hipotecado;
+    void setHipotecada(boolean hipotecada) {
+        this.hipotecada = hipotecada;
+    }
+
+    /**
+     * Añade la casilla a la que le corresponde este titulo de propiedad
+     * @param casilla Debe ser de tipo calle
+     */
+    void setCasilla(Casilla casilla) {
+        if(casilla.getTipo() != TipoCasilla.CALLE)
+            throw new UnsupportedOperationException("La casilla debe ser de tipo calle");
+        this.casilla = casilla;
+    }
+    
+    void setPropietario(Jugador propietario){
+        this.propietario = propietario;
+    }
+
+    /**
+     * 
+     * @param coste 
+     */
+    void cobrarAlquiler(int coste){
+        //TO-DO
+    }
+    
+    /**
+     * Devuelve si el propietario esta encarcelado
+     * @return 
+     */
+    boolean    propietarioEncarcelado(){
+        return propietario.getEncarcelado();
+    }
+    
+    /**
+     * Devuelve si el titulo de la propiedad tiene dueño
+     * @return 
+     */
+    boolean tengoPropietario(){
+        return (propietario != null);
     }
     
     @Override
     public String toString(){
         return "TituloPropiedad{" + "\n nombre=" + nombre +"\n hipotecado=" 
-                + hipotecado +"\n Factor de Revalorizacion=" + factorRevalorizacion
+                + hipotecada +"\n Factor de Revalorizacion=" + factorRevalorizacion
                 + "\n Alquiler Base="+ alquilerBase+ "\n Hipoteca Base=" 
                 + hipotecaBase + "\n Precio Edificar= " + precioEdificar + "}";
     }
