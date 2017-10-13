@@ -116,6 +116,7 @@ public class TituloPropiedad {
         return (propietario != null);
     }
     
+    
     @Override
     public String toString(){
         return "TituloPropiedad{" + "\n nombre=" + nombre +"\n hipotecado=" 

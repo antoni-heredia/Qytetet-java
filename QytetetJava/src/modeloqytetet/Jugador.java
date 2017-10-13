@@ -289,6 +289,7 @@ public class Jugador {
         //TODO
         return false;
     }
+    
     /**
      * Devuelve la informacion del jugador en forma de string
      *
