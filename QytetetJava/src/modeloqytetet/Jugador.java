@@ -159,7 +159,7 @@ public class Jugador {
      * @param hipotecadas
      * @return 
      */
-    ArrayList<TituloPropiedad> obtenerProppiedadesHipotecadas(boolean hipotecadas){
+    ArrayList<TituloPropiedad> obtenerPropiedadesHipotecadas(boolean hipotecadas){
         //TODO
         return null;
     }

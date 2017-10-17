@@ -89,5 +89,64 @@ public class Casilla {
         
         return stringCasilla;
     }
+    TituloPropiedad asignarPropietario(Jugador jugador){
+        
+        return null;
+    }
+    int cancelarHipoteca(){
+    
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int calcularValorHipoteca(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int cobrarAlquiler(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int edificarCasa(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int edificarHotel(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    boolean estadoHipoteca(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int getCosteHipoteca(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int getPrecioEdificar(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int hipotecar(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int precioTotalComprar(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    boolean calcularHipoteca(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    boolean sePuedeEdificarCasa(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    boolean sePuedeEdificarHotel(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    boolean soyEdificable(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    boolean tengoPropietario(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    int venderTitulo(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    
+    void asignarTituloPropiedad(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    
+    
     
 }
