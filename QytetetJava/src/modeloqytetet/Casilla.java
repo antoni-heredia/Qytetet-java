@@ -11,6 +11,8 @@ package modeloqytetet;
  */
 public class Casilla {
     private int numeroCasilla;
+
+    
     private int coste;
     private int numHoteles;
     private int numCasas;
@@ -40,32 +42,42 @@ public class Casilla {
     
     
     
-    
-    public void setNumHoteles(int numHoteles) {
+    public void setNumeroCasilla(int numeroCasilla) {
+        this.numeroCasilla = numeroCasilla;
+    }
+
+    public void setCoste(int coste) {
+        this.coste = coste;
+    }
+
+    public void setTipo(TipoCasilla tipo) {
+        this.tipo = tipo;
+    }
+    void setNumHoteles(int numHoteles) {
         this.numHoteles = numHoteles;
     }
 
-    public void setNumCasas(int numCasas) {
+    void setNumCasas(int numCasas) {
         this.numCasas = numCasas;
     }
 
-    private void setTituloPropiedad(TituloPropiedad titulo) {
+    private void setTitulo(TituloPropiedad titulo) {
         this.titulo = titulo;
     }
 
-    public int getNumeroCasilla() {
+    int getNumeroCasilla() {
         return numeroCasilla;
     }
 
-    public int getCoste() {
+    int getCoste() {
         return coste;
     }
 
-    public int getNumHoteles() {
+    int getNumHoteles() {
         return numHoteles;
     }
 
-    public int getNumCasas() {
+    int getNumCasas() {
         return numCasas;
     }
 
@@ -143,7 +155,7 @@ public class Casilla {
         throw new UnsupportedOperationException("sin implementar");
     }
     
-    void asignarTituloPropiedad(){
+    private void asignarTituloPropiedad(){
         throw new UnsupportedOperationException("sin implementar");
     }
     

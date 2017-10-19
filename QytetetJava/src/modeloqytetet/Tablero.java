@@ -75,11 +75,18 @@ public class Tablero {
      * Devuelve la casilla donde se encuentra la carcel
      * @return  el objeto casilla de la carcel
      */
-    public Casilla getCarcel() {
+    Casilla getCarcel() {
         return carcel;
     }
-    
-    
+    boolean esCasillaCarcel(){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    Casilla obtenerCasillaNumero(int numeroCasilla){
+        throw new UnsupportedOperationException("sin implementar");
+    }
+    Casilla obtenerNuevaCasilla(Casilla casilla, int desplazamiento){
+        throw new UnsupportedOperationException("sin implementar");
+    }
     
     @Override
     public String toString(){
