@@ -24,7 +24,8 @@ public class Jugador {
         this.nombre = nombre;
         this.encarcelado = false;
         this.saldo = 7500;
-
+        propiedades = new ArrayList();
+        //casillaActual = Qytetet.getInstance().getTablero().obtenerCasillaNumero(0);
     }
 
     //Consultores basicos
@@ -67,11 +68,11 @@ public class Jugador {
      *
      * @param carta Debe ser una carta de tipo SalirCarcel
      */
-    void setCartaLibertad(Sorpresa carta) {
+    void setCartaLibertad(Sorpresa carta) throws Exception {
 
         //Si la carta no es del tipo salir carcel lanzamos una excepcion
         if (carta.getTipo() != TipoSorpresa.SALIRCARCEL) {
-            throw new UnsupportedOperationException("La carta no es"
+            throw new Exception("La carta no es"
                     + " de salir carcel");
         }
 
@@ -106,8 +107,8 @@ public class Jugador {
      * @param casilla
      * @return
      */
-    boolean actualizarPosicion(Casilla casilla) {
-        return false;
+    boolean actualizarPosicion(Casilla casilla) throws UnsupportedOperationException{
+        throw new UnsupportedOperationException("sin implementar");
     }
 
     /**
@@ -115,43 +116,45 @@ public class Jugador {
      *
      * @return
      */
-    boolean comprarTitulo() {
+    boolean comprarTitulo() throws UnsupportedOperationException{
         //TODO : Implementar el metodo
-        return false;
+        throw new UnsupportedOperationException("sin implementar");
     }
 
     /**
      *
      * @return
      */
-    Sorpresa devolverCartaLibertad() {
+    Sorpresa devolverCartaLibertad() throws UnsupportedOperationException{
         //TODO : Implementar el metodo
-        return null;
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
      * 
      * @param casilla 
      */
-    void  irACarcel(Casilla casilla){
+    void  irACarcel(Casilla casilla) throws UnsupportedOperationException{
         //TODO
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
      * 
      * @param Cantidad 
      */
-    void modificarSaldo(int Cantidad){
-        
+    void modificarSaldo(int Cantidad) throws  UnsupportedOperationException{
+        //TODO
+        throw new UnsupportedOperationException("sin implementar");        
     }
     
     /**
      * 
      * @return 
      */
-    int obtenerCapital(){
+    int obtenerCapital() throws UnsupportedOperationException{
         //TODO
-        return 0; 
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
@@ -159,17 +162,18 @@ public class Jugador {
      * @param hipotecadas
      * @return 
      */
-    ArrayList<TituloPropiedad> obtenerPropiedadesHipotecadas(boolean hipotecadas){
+    ArrayList<TituloPropiedad> obtenerPropiedadesHipotecadas(boolean hipotecadas) throws  UnsupportedOperationException{
         //TODO
-        return null;
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
      * 
      * @param cantidad 
      */
-    void pagarCobrarPorCasaYHotel(int cantidad){
+    void pagarCobrarPorCasaYHotel(int cantidad) throws UnsupportedOperationException{
         //TODO
+        throw new UnsupportedOperationException("sin implementar");        
     }
     
     /**
@@ -177,9 +181,9 @@ public class Jugador {
      * @param cantidad
      * @return 
      */
-    boolean pagarLibertad(int cantidad){
+    boolean pagarLibertad(int cantidad) throws UnsupportedOperationException{
         //TODO
-        return false;
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     
@@ -188,9 +192,9 @@ public class Jugador {
      * @param casilla
      * @return 
      */
-    boolean puedoEdificarCasa(Casilla casilla){
+    boolean puedoEdificarCasa(Casilla casilla) throws  UnsupportedOperationException{
         //TODO
-        return false;
+        throw new UnsupportedOperationException("sin implementar");
     }
 
     
@@ -199,9 +203,9 @@ public class Jugador {
      * @param casilla
      * @return 
      */
-    boolean puedoEdificarHotel(Casilla casilla){
+    boolean puedoEdificarHotel(Casilla casilla) throws UnsupportedOperationException{
         //TODO
-        return false;
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
@@ -209,9 +213,9 @@ public class Jugador {
      * @param casilla
      * @return 
      */
-    boolean puedoHipotecar(Casilla casilla){
+    boolean puedoHipotecar(Casilla casilla) throws UnsupportedOperationException{
         //TODO
-        return false;
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
@@ -219,9 +223,9 @@ public class Jugador {
      * @param casilla
      * @return 
      */
-    boolean puedoPagarHipoteca(Casilla casilla){
+    boolean puedoPagarHipoteca(Casilla casilla) throws UnsupportedOperationException{
         //TODO
-        return false;
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
@@ -229,9 +233,9 @@ public class Jugador {
      * @param casilla
      * @return 
      */
-    boolean puedoVenderPropiedad(Casilla casilla){
+    boolean puedoVenderPropiedad(Casilla casilla)throws  UnsupportedOperationException{
         //TODO
-        return false; 
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
@@ -239,26 +243,27 @@ public class Jugador {
      * @param carta
      * @return 
      */
-    boolean tengoCartaLiberdad(Sorpresa carta){
+    boolean tengoCartaLiberdad(Sorpresa carta) throws UnsupportedOperationException{
         //TODO
-       return false; 
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
      * 
      * @param casilla 
      */
-    void venderPropiedad(Casilla casilla){
+    void venderPropiedad(Casilla casilla) throws  UnsupportedOperationException{
        //TODO 
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
      * 
      * @return 
      */
-    private int cuantasCasasHotelTengo(){
+    private int cuantasCasasHotelTengo() throws UnsupportedOperationException{
         //TODO
-        return 0;
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     
@@ -266,8 +271,9 @@ public class Jugador {
      * 
      * @param casilla 
      */
-    private void eliminarDeMisPropiedades(Casilla casilla){
+    private void eliminarDeMisPropiedades(Casilla casilla) throws  UnsupportedOperationException{
         //TODO
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
@@ -275,9 +281,9 @@ public class Jugador {
      * @param casilla
      * @return 
      */
-    private boolean esDeMiPropiedad(Casilla casilla){
+    private boolean esDeMiPropiedad(Casilla casilla) throws UnsupportedOperationException{
         //TODO
-        return false;
+            throw new UnsupportedOperationException("sin implementar");
     } 
     
     /**
@@ -285,9 +291,9 @@ public class Jugador {
      * @param cantidad
      * @return 
      */
-    private boolean tengoSaldo(int cantidad){
+    private boolean tengoSaldo(int cantidad) throws  UnsupportedOperationException{
         //TODO
-        return false;
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
@@ -298,19 +304,22 @@ public class Jugador {
     @Override
     public String toString() {
 
-        String texto = "Nombre: " + nombre + "\nSaldo: " + saldo + "\nCarta de libertad: "
-                + cartaLibertad.toString() + "\nCasilla actual: "
-                + casillaActual.toString() + "\nNumero de propiedades: "
-                + propiedades.size();
+        String texto = "Nombre: " + nombre + "\nSaldo: " + saldo ;
+        if(cartaLibertad != null)
+            texto += "\nCarta de libertad: " + cartaLibertad.toString();
+        if(casillaActual != null)
+            texto += "\nCasilla actual: " + casillaActual.toString();
+        if(propiedades != null){
+            texto += "\nNumero de propiedades: " + propiedades.size();
+            if (!propiedades.isEmpty()) {
+                texto += "\nPropiedades:{";
 
-        if (!propiedades.isEmpty()) {
-            texto += "\nPropiedades:{";
-
-            for (TituloPropiedad t : propiedades) {
-                texto += " " + t.toString();
+                for (TituloPropiedad t : propiedades) {
+                    texto += " " + t.toString();
+                }
             }
-
         }
+        texto += "\n";
         return texto;
     }
 }

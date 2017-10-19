@@ -108,11 +108,11 @@ public class PruebaQytetet {
             System.out.println(s.toString());
         }*/
         
-       // System.out.println(tablero.toString());
-       Qytetet juego=Qytetet.getInstance();
-       ArrayList<String> nombres = new ArrayList();
-       nombres.add("joselito");
-       nombres.add("jose");
-      // juego.inicializarJuego(nombres);
+        // System.out.println(tablero.toString());
+        Qytetet juego=Qytetet.getInstance();
+        ArrayList<String> nombres = new ArrayList();
+        nombres.add("joselito");
+        nombres.add("jose");
+        juego.inicializarJuego(nombres);
     }
 }

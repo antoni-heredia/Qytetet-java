@@ -58,6 +58,13 @@ public class Qytetet {
     public Jugador getJugadorActual() {
         return jugadorActual;
     }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+    
+    
+    
     public boolean hipotecarPropiedad(Casilla casilla){
         throw new UnsupportedOperationException("sin implementar");
     }

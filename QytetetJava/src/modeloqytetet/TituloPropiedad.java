@@ -82,9 +82,9 @@ public class TituloPropiedad {
      * Añade la casilla a la que le corresponde este titulo de propiedad
      * @param casilla Debe ser de tipo calle
      */
-    void setCasilla(Casilla casilla) {
+    void setCasilla(Casilla casilla) throws Exception{
         if(casilla.getTipo() != TipoCasilla.CALLE)
-            throw new UnsupportedOperationException("La casilla debe ser de tipo calle");
+            throw new Exception("La casilla debe ser de tipo calle");
         this.casilla = casilla;
     }
     
@@ -105,7 +105,7 @@ public class TituloPropiedad {
      * @return 
      */
     boolean    propietarioEncarcelado(){
-        return propietario.getEncarcelado();
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     /**
@@ -113,7 +113,7 @@ public class TituloPropiedad {
      * @return 
      */
     boolean tengoPropietario(){
-        return (propietario != null);
+        throw new UnsupportedOperationException("sin implementar");
     }
     
     
