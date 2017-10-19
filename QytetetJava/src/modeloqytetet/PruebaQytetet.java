@@ -15,11 +15,11 @@ public class PruebaQytetet {
      * @param args the command line arguments
      */
 
-    private static ArrayList<Sorpresa> mazo = new ArrayList();
+    //private static ArrayList<Sorpresa> mazo = new ArrayList();
     
-    private static Tablero tablero = new Tablero();
+   // private static Tablero tablero = new Tablero();
     
-    private static void inicializarSorpresa(){
+    /*private static void inicializarSorpresa(){
         //Cartas de ir a casilla
         mazo.add(new Sorpresa("Te hemos pillado copiando en un examen, "
                 + "¡Debes ir a la carcel!", tablero.getCarcel().getNumeroCasilla(), 
@@ -53,9 +53,9 @@ public class PruebaQytetet {
                 + "Todos te piden dinero por su silencio. Te toca pagar.",
                 -15, TipoSorpresa.PORJUGADOR));
         
-    }
+    }*/
     
-    private static ArrayList<Sorpresa> obtenertSorpresasValorPositivo(){
+    /*private static ArrayList<Sorpresa> obtenertSorpresasValorPositivo(){
         ArrayList<Sorpresa> sorpresasPositivas = new ArrayList();
         for(Sorpresa s : mazo){
             if(s.getValor() > 0)
@@ -85,12 +85,12 @@ public class PruebaQytetet {
         }
         
         return sorpresasTipo;
-    }
+    }*/
     
     public static void main(String[] args) {
         // TODO code application logic here
 
-        PruebaQytetet.inicializarSorpresa();
+        /*PruebaQytetet.inicializarSorpresa();
         ArrayList<Sorpresa> sorpresasPositivas = PruebaQytetet.obtenertSorpresasValorPositivo();
         ArrayList<Sorpresa> sorpresasTipoIrACasilla = PruebaQytetet.obtenerSorpresasTipoIrACasilla();
         ArrayList<Sorpresa> sorpresasTipoIrACasillaBuscadas = PruebaQytetet.buscarSorpresasPorTipo(TipoSorpresa.PAGARCOBRAR);
@@ -106,9 +106,13 @@ public class PruebaQytetet {
         }
         for(Sorpresa s : sorpresasTipoIrACasillaBuscadas){
             System.out.println(s.toString());
-        }
+        }*/
         
-        System.out.println(tablero.toString());
-        
+       // System.out.println(tablero.toString());
+       Qytetet juego=Qytetet.getInstance();
+       ArrayList<String> nombres = new ArrayList();
+       nombres.add("joselito");
+       nombres.add("jose");
+       juego.inicializarJuego(nombres);
     }
 }

@@ -40,19 +40,6 @@ public class Casilla {
         this.numCasas = 0;
     }
     
-    
-    
-    public void setNumeroCasilla(int numeroCasilla) {
-        this.numeroCasilla = numeroCasilla;
-    }
-
-    public void setCoste(int coste) {
-        this.coste = coste;
-    }
-
-    public void setTipo(TipoCasilla tipo) {
-        this.tipo = tipo;
-    }
     void setNumHoteles(int numHoteles) {
         this.numHoteles = numHoteles;
     }
