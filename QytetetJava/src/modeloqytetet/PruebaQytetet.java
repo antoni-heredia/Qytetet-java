@@ -113,6 +113,6 @@ public class PruebaQytetet {
        ArrayList<String> nombres = new ArrayList();
        nombres.add("joselito");
        nombres.add("jose");
-       juego.inicializarJuego(nombres);
+      // juego.inicializarJuego(nombres);
     }
 }
