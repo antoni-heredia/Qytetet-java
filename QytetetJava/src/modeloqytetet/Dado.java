@@ -26,6 +26,6 @@ public class Dado {
      */
     int Tirar(){
         //TODO
-        return 0;
+        throw new UnsupportedOperationException("sin implementar");
     }
 }

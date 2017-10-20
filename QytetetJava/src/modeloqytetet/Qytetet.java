@@ -11,12 +11,15 @@ import java.util.List;
  * @author jo_se
  */
 public class Qytetet {
+    
     private static final Qytetet instance = new Qytetet();
     public static final int MAX_JUGADORES = 4;
+    
     static final int MAX_CARTAS = 10;
     static final int MAX_CASILLA = 20;
     static final int PREICIO_LIBERTAD = 200;
     static final int SALDO_SALIDA = 1000;
+    
     private Sorpresa cartaActual;
     private ArrayList<Sorpresa> mazo;
     private Jugador jugadorActual;
@@ -24,17 +27,16 @@ public class Qytetet {
     private Tablero tablero;
     private Dado dado;
     
-    private Qytetet(){
-        inicializarTablero();
-        inicializarCartasSorpresa();
-    }
+    private Qytetet(){}
     
     public static Qytetet getInstance(){
         return instance;
     }
+    
     public boolean aplicarSorpresa(){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     public boolean cancelarHipoteca(Casilla casilla){
         throw new UnsupportedOperationException("sin implementar");
     }
@@ -68,42 +70,46 @@ public class Qytetet {
     public boolean hipotecarPropiedad(Casilla casilla){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     public void inicializarJuego(ArrayList<String> nombres){
         //throw new UnsupportedOperationException("sin implementar");
         inicializarTablero();
         inicializarJugadores(nombres);
-        //System.out.print(tablero.toString());
-        for(Jugador jugador : jugadores){
-            System.out.print(jugador.toString());
-        }
-        
-        
-        
+        inicializarCartasSorpresa();       
     }
+    
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     public boolean jugar(){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     public List obtenerRanking(){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     public ArrayList propiedadesHipotecadasJugador(boolean hipotecadas){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     public Jugador siguienteJugador(Casilla casilla){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     public boolean venderPropiedad(Casilla casilla){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     private void encarcelarJugador(){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     private void salidaJugadores(){
         throw new UnsupportedOperationException("sin implementar");
     }
+    
     private void inicializarCartasSorpresa(){
         mazo = new ArrayList(MAX_CARTAS);
         //Cartas de ir a casilla
@@ -139,9 +145,11 @@ public class Qytetet {
                 + "Todos te piden dinero por su silencio. Te toca pagar.",
                 -15, TipoSorpresa.PORJUGADOR));
     }
+    
     private void inicializarTablero(){
         tablero = new Tablero();
     }
+    
     private void inicializarJugadores(ArrayList<String> nombres){
         
         jugadores = new ArrayList(nombres.size());
