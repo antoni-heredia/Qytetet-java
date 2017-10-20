@@ -82,9 +82,7 @@ public class TituloPropiedad {
      * Añade la casilla a la que le corresponde este titulo de propiedad
      * @param casilla Debe ser de tipo calle
      */
-    void setCasilla(Casilla casilla) throws Exception{
-        if(casilla.getTipo() != TipoCasilla.CALLE)
-            throw new Exception("La casilla debe ser de tipo calle");
+    void setCasilla(Casilla casilla){
         this.casilla = casilla;
     }
     
