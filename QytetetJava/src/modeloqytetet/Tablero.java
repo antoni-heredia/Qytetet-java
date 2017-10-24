@@ -38,77 +38,54 @@ public class Tablero {
         casillas.add(new Casilla(1, 000, 
                 new TituloPropiedad("Mesas rojas",50, (float) 0.11,150,250)));
         
-        //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
         
         casillas.add(new Casilla(2, TipoCasilla.SORPRESA));
+        
         casillas.add(new Casilla(3, 000,
                 new TituloPropiedad("Biblioteca", 65, (float) 0.1, 200, 300)));
-        //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
         
         casillas.add(new Casilla(4, 000,
-                new TituloPropiedad("Cafeteria", 70, (float) 0.12, 350, 350)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
+                new TituloPropiedad("Cafeteria", 70, (float) 0.12, 350, 350)));        
         
         casillas.add(new Casilla(numCasillaCarcel, TipoCasilla.CARCEL));
         
         casillas.add(new Casilla(6, 000,
-                new TituloPropiedad("Secretaria", 85, (float) 0.14, 300, 600)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
+                new TituloPropiedad("Secretaria", 85, (float) 0.14, 300, 600)));        
         
         casillas.add(new Casilla(7, TipoCasilla.SORPRESA));
         
         casillas.add(new Casilla(8, 000,
-                new TituloPropiedad("Anfiteatro", 60, (float) 0.16, 400, 275)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
+                new TituloPropiedad("Anfiteatro", 60, (float) 0.16, 400, 275)));        
         
         casillas.add(new Casilla(9,000,
-                new TituloPropiedad("Aulas pefabricadas", 90, (float) 0.11, 425, 725)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
+                new TituloPropiedad("Aulas pefabricadas", 90, (float) 0.11, 425, 725)));       
         
         casillas.add(new Casilla(10, TipoCasilla.PARKING));
         
         casillas.add(new Casilla(11, 000,
                 new TituloPropiedad("Departamento LSI", 100, (float) 0.17, 700, 750)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
         
         casillas.add(new Casilla(12, TipoCasilla.SORPRESA));
         
         casillas.add(new Casilla(13, 000,
-                new TituloPropiedad("Departamento DECSAI", 100, (float)0.16, 750, 400)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
+                new TituloPropiedad("Departamento DECSAI", 100, (float)0.16, 750, 400)));       
         
         casillas.add(new Casilla(14, 000,
-                new TituloPropiedad("Departamento ATC", 90, (float) 0.15, 625, 575)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
+                new TituloPropiedad("Departamento ATC", 90, (float) 0.15, 625, 575)));      
         
         casillas.add(new Casilla(15, TipoCasilla.JUEZ));
         
         casillas.add(new Casilla(16, 000, 
-                new TituloPropiedad("Aulario", 150, (float)0.16, 550, 600)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
+                new TituloPropiedad("Aulario", 150, (float)0.16, 550, 600)));        
         
         casillas.add(new Casilla(17, TipoCasilla.IMPUESTO));
         
         casillas.add(new Casilla(18, 000, 
-                new TituloPropiedad("Copisteria", 65, (float)0.18, 475, 625)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
+                new TituloPropiedad("Copisteria", 65, (float)0.18, 475, 625)));        
         
         casillas.add(new Casilla(19, 000,
                 new TituloPropiedad("CITIC", 90, (float)0.2, 480, 450)));
-         //Añadimos al titulo propiedad de la ultima casilla que hemos añadido, la propia casilla
-        casillas.get(casillas.size()-1).enlzarTitutloCasilla();
-        
+         
         carcel = casillas.get(numCasillaCarcel);
                 
         

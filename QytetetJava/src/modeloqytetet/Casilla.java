@@ -38,6 +38,7 @@ public class Casilla {
         this.tipo = TipoCasilla.CALLE;
         this.numHoteles = 0;
         this.numCasas = 0;
+        titulo.setCasilla(this);
     }
     
     void setNumHoteles(int numHoteles) {
@@ -51,17 +52,7 @@ public class Casilla {
     private void setTitulo(TituloPropiedad titulo) {
         this.titulo = titulo;
     }
-    
-
-    /**
-     * Añadimos al titulo propiedad de la casilla, la propia casilla
-     */
-    void enlzarTitutloCasilla(){
-        //Al ser un metodo protected nos vamos a asegurar que  la casilla tenga
-        //titulo antes de añadirle la propia casilla
-        if(this.titulo != null)
-            this.getTitulo().setCasilla(this);
-    }
+   
     int getNumeroCasilla() {
         return numeroCasilla;
     }

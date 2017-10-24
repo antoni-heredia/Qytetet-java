@@ -25,7 +25,7 @@ public class Qytetet {
     private Jugador jugadorActual;
     private ArrayList<Jugador> jugadores;
     private Tablero tablero;
-    private Dado dado;
+    private Dado dado = Dado.getInstance();
     
     private Qytetet(){}
     
@@ -75,7 +75,7 @@ public class Qytetet {
         //throw new UnsupportedOperationException("sin implementar");
         inicializarTablero();
         inicializarJugadores(nombres);
-        inicializarCartasSorpresa();       
+        inicializarCartasSorpresa();   
     }
     
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo){
@@ -157,6 +157,39 @@ public class Qytetet {
         for(String nombre : nombres){
             jugadores.add(new Jugador(nombre));
         }
+    }
+     @Override
+    public String toString(){
+        String cadena = "Turno actual: ";
+        
+        if(jugadorActual != null)
+            cadena += jugadorActual.toString();
+        else
+            cadena += "El turno actual esta sin definir aun.\n";
+        
+        cadena += "Jugadores: ";
+        if(jugadores != null && !jugadores.isEmpty()){  
+            for (Jugador j : jugadores) 
+                    cadena += j.toString() + "\n";   
+        }else
+            cadena += "No hay jugadores \n";
+        
+        
+        cadena += "Tablero: ";
+        if(tablero != null)
+            cadena += tablero.toString();
+        else
+            cadena += "Tablero no esta iniciado. \n";
+        
+        cadena += "Mazo: ";
+        if(mazo != null && !mazo.isEmpty()){  
+            for (Sorpresa s : mazo) 
+                    cadena += s.toString() + "\n";   
+        }else
+            cadena += "No hay jugadores \n";
+        
+            
+        return cadena;
     }
     
     

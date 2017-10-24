@@ -114,5 +114,7 @@ public class PruebaQytetet {
         nombres.add("joselito");
         nombres.add("jose");
         juego.inicializarJuego(nombres);
+        String cadena = juego.toString();
+        System.out.println(cadena);
     }
 }

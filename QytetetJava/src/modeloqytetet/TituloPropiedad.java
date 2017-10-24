@@ -31,7 +31,7 @@ public class TituloPropiedad {
     }
     //Constructor sin necesidad de decir si esta hipotecada, ya que por defecto sera false
     public TituloPropiedad(String nombre,int alquilerBase, 
-            float factorRevalorizacion, int hipotecaBase, int precioEdificar){
+        float factorRevalorizacion, int hipotecaBase, int precioEdificar){
         this.nombre = nombre;
         this.hipotecada = false;
         this.alquilerBase = alquilerBase;
