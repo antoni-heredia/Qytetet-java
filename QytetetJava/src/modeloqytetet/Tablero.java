@@ -29,7 +29,7 @@ public class Tablero {
      */
     private void inicializar(){
         
-        casillas = new ArrayList();
+        casillas = new ArrayList(Qytetet.MAX_CASILLA);
         
         int numCasillaCarcel = 5 ;
         
