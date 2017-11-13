@@ -107,7 +107,7 @@ public class Jugador {
      * @param casilla
      * @return
      */
-    boolean actualizarPosicion(Casilla casilla) throws UnsupportedOperationException{
+    boolean actualizarPosicion(Casilla casilla) throws UnsupportedOperationException {
         throw new UnsupportedOperationException("sin implementar");
     }
 
@@ -116,7 +116,7 @@ public class Jugador {
      *
      * @return
      */
-    boolean comprarTitulo() throws UnsupportedOperationException{
+    boolean comprarTitulo() throws UnsupportedOperationException {
         //TODO : Implementar el metodo
         throw new UnsupportedOperationException("sin implementar");
     }
@@ -125,177 +125,197 @@ public class Jugador {
      *
      * @return
      */
-    Sorpresa devolverCartaLibertad() throws UnsupportedOperationException{
+    Sorpresa devolverCartaLibertad() throws UnsupportedOperationException {
         //TODO : Implementar el metodo
         throw new UnsupportedOperationException("sin implementar");
     }
-    
+
     /**
-     * 
-     * @param casilla 
-     */
-    void  irACarcel(Casilla casilla) throws UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    /**
-     * 
-     * @param Cantidad 
-     */
-    void modificarSaldo(int Cantidad) throws  UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");        
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    int obtenerCapital() throws UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    /**
-     * 
-     * @param hipotecadas
-     * @return 
-     */
-    ArrayList<TituloPropiedad> obtenerPropiedadesHipotecadas(boolean hipotecadas) throws  UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    /**
-     * 
-     * @param cantidad 
-     */
-    void pagarCobrarPorCasaYHotel(int cantidad) throws UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");        
-    }
-    
-    /**
-     * 
-     * @param cantidad
-     * @return 
-     */
-    boolean pagarLibertad(int cantidad) throws UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    
-    /**
-     * 
+     *
      * @param casilla
-     * @return 
      */
-    boolean puedoEdificarCasa(Casilla casilla) throws  UnsupportedOperationException{
+    void irACarcel(Casilla casilla) throws UnsupportedOperationException {
         //TODO
         throw new UnsupportedOperationException("sin implementar");
     }
 
-    
     /**
-     * 
-     * @param casilla
-     * @return 
+     *
+     * @param Cantidad
      */
-    boolean puedoEdificarHotel(Casilla casilla) throws UnsupportedOperationException{
+    void modificarSaldo(int Cantidad) throws UnsupportedOperationException {
         //TODO
         throw new UnsupportedOperationException("sin implementar");
     }
-    
+
     /**
-     * 
-     * @param casilla
-     * @return 
+     *
+     * @return
      */
-    boolean puedoHipotecar(Casilla casilla) throws UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    int obtenerCapital(){
+        int capital = saldo;
+        for (TituloPropiedad t : propiedades) {
+            capital += t.getCasilla().getCoste();
+            int cant = t.getCasilla().getNumHoteles() + t.getCasilla().getNumCasas();
+            capital += cant * t.getPrecioEdificar();
+            if (t.getHipotecada()) {
+                capital -= t.getHipotecaBase();
+            }
+        }
+        return capital;
     }
-    
+
     /**
-     * 
-     * @param casilla
-     * @return 
+     *
+     * @param hipotecadas
+     * @return
      */
-    boolean puedoPagarHipoteca(Casilla casilla) throws UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    ArrayList<TituloPropiedad> obtenerPropiedadesHipotecadas(boolean hipotecadas) {
+
+        ArrayList<TituloPropiedad> titulos_hipotecados = new ArrayList();
+        for (TituloPropiedad t : propiedades) {
+            if(t.getHipotecada())
+                titulos_hipotecados.add(t);
+        }
+        return titulos_hipotecados;
     }
-    
+
     /**
-     * 
-     * @param casilla
-     * @return 
-     */
-    boolean puedoVenderPropiedad(Casilla casilla)throws  UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    /**
-     * 
-     * @param carta
-     * @return 
-     */
-    boolean tengoCartaLiberdad(Sorpresa carta) throws UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    /**
-     * 
-     * @param casilla 
-     */
-    void venderPropiedad(Casilla casilla) throws  UnsupportedOperationException{
-       //TODO 
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    /**
-     * 
-     * @return 
-     */
-    private int cuantasCasasHotelTengo() throws UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    
-    /**
-     * 
-     * @param casilla 
-     */
-    private void eliminarDeMisPropiedades(Casilla casilla) throws  UnsupportedOperationException{
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
-    }
-    
-    /**
-     * 
-     * @param casilla
-     * @return 
-     */
-    private boolean esDeMiPropiedad(Casilla casilla) throws UnsupportedOperationException{
-        //TODO
-            throw new UnsupportedOperationException("sin implementar");
-    } 
-    
-    /**
-     * 
+     *
      * @param cantidad
-     * @return 
      */
-    private boolean tengoSaldo(int cantidad) throws  UnsupportedOperationException{
+    void pagarCobrarPorCasaYHotel(int cantidad) throws UnsupportedOperationException {
         //TODO
         throw new UnsupportedOperationException("sin implementar");
     }
-    
+
+    /**
+     *
+     * @param cantidad
+     * @return
+     */
+    boolean pagarLibertad(int cantidad) throws UnsupportedOperationException {
+        //TODO
+        throw new UnsupportedOperationException("sin implementar");
+    }
+
+    /**
+     *
+     * @param casilla
+     * @return
+     */
+    boolean puedoEdificarCasa(Casilla casilla) throws UnsupportedOperationException {
+        //TODO
+        throw new UnsupportedOperationException("sin implementar");
+    }
+
+    /**
+     *
+     * @param casilla
+     * @return
+     */
+    boolean puedoEdificarHotel(Casilla casilla) throws UnsupportedOperationException {
+        //TODO
+        throw new UnsupportedOperationException("sin implementar");
+    }
+
+    /**
+     *
+     * @param casilla
+     * @return
+     */
+    boolean puedoHipotecar(Casilla casilla) throws UnsupportedOperationException {
+        //TODO
+        throw new UnsupportedOperationException("sin implementar");
+    }
+
+    /**
+     *
+     * @param casilla
+     * @return
+     */
+    boolean puedoPagarHipoteca(Casilla casilla) throws UnsupportedOperationException {
+        //TODO
+        throw new UnsupportedOperationException("sin implementar");
+    }
+
+    /**
+     *
+     * @param casilla
+     * @return
+     */
+    boolean puedoVenderPropiedad(Casilla casilla) throws UnsupportedOperationException {
+        //TODO
+        throw new UnsupportedOperationException("sin implementar");
+    }
+
+    /**
+     *
+     * @param carta
+     * @return
+     */
+    boolean tengoCartaLiberdad(Sorpresa carta) throws UnsupportedOperationException {
+        //TODO
+        throw new UnsupportedOperationException("sin implementar");
+    }
+
+    /**
+     *
+     * @param casilla
+     */
+    void venderPropiedad(Casilla casilla) throws UnsupportedOperationException {
+        //TODO 
+        throw new UnsupportedOperationException("sin implementar");
+    }
+
+    /**
+     *
+     * @return
+     */
+    private int cuantasCasasHotelTengo(){
+        int cantidad = 0;
+        for (TituloPropiedad t : propiedades) {
+            cantidad += t.getCasilla().getNumCasas() + t.getCasilla().getNumHoteles();
+        }
+        return cantidad;
+    }
+
+    /**
+     *
+     * @param casilla
+     */
+    private void eliminarDeMisPropiedades(Casilla casilla){
+        for (TituloPropiedad t : propiedades) {
+            if (t.getCasilla().getNumeroCasilla() == casilla.getNumeroCasilla()) {
+                propiedades.remove(t);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param casilla
+     * @return
+     */
+    private boolean esDeMiPropiedad(Casilla casilla){
+        boolean f = false;
+        for (TituloPropiedad t : propiedades) {
+            if (t.getCasilla().getNumeroCasilla() == casilla.getNumeroCasilla()) {
+                f = true;
+            }
+        }
+        return f;
+    }
+
+    /**
+     *
+     * @param cantidad
+     * @return
+     */
+    private boolean tengoSaldo(int cantidad){
+        return (saldo >= cantidad);
+    }
+
     /**
      * Devuelve la informacion del jugador en forma de string
      *
@@ -304,12 +324,14 @@ public class Jugador {
     @Override
     public String toString() {
 
-        String texto = "Nombre: " + nombre + "\nSaldo: " + saldo ;
-        if(cartaLibertad != null)
+        String texto = "Nombre: " + nombre + "\nSaldo: " + saldo;
+        if (cartaLibertad != null) {
             texto += "\nCarta de libertad: " + cartaLibertad.toString();
-        if(casillaActual != null)
+        }
+        if (casillaActual != null) {
             texto += "\nCasilla actual: " + casillaActual.toString();
-        if(propiedades != null){
+        }
+        if (propiedades != null) {
             texto += "\nNumero de propiedades: " + propiedades.size();
             if (!propiedades.isEmpty()) {
                 texto += "\nPropiedades:{";

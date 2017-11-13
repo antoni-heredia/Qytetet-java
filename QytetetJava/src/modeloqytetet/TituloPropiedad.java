@@ -10,18 +10,18 @@ package modeloqytetet;
  * @author jo_se
  */
 public class TituloPropiedad {
-    
+
     private String nombre;
     private boolean hipotecada;
-    private int  alquilerBase;
+    private int alquilerBase;
     private float factorRevalorizacion;
     private int hipotecaBase;
     private int precioEdificar;
     private Jugador propietario;
     private Casilla casilla;
-    
+
     public TituloPropiedad(String nombre, boolean hipotecado, int alquilerBase,
-            float factorRevalorizacion, int hipotecaBase, int precioEdificar){
+            float factorRevalorizacion, int hipotecaBase, int precioEdificar) {
         this.nombre = nombre;
         this.hipotecada = hipotecado;
         this.alquilerBase = alquilerBase;
@@ -29,9 +29,10 @@ public class TituloPropiedad {
         this.hipotecaBase = hipotecaBase;
         this.precioEdificar = precioEdificar;
     }
+
     //Constructor sin necesidad de decir si esta hipotecada, ya que por defecto sera false
-    public TituloPropiedad(String nombre,int alquilerBase, 
-        float factorRevalorizacion, int hipotecaBase, int precioEdificar){
+    public TituloPropiedad(String nombre, int alquilerBase,
+            float factorRevalorizacion, int hipotecaBase, int precioEdificar) {
         this.nombre = nombre;
         this.hipotecada = false;
         this.alquilerBase = alquilerBase;
@@ -39,9 +40,9 @@ public class TituloPropiedad {
         this.hipotecaBase = hipotecaBase;
         this.precioEdificar = precioEdificar;
     }
-    
+
     //Constructor indicando solo el nombre, los demas valores estaran puestos al minimo
-    public TituloPropiedad(String nombre){
+    public TituloPropiedad(String nombre) {
         this.nombre = nombre;
         this.hipotecada = false;
         this.alquilerBase = 50;
@@ -73,54 +74,60 @@ public class TituloPropiedad {
     public int getPrecioEdificar() {
         return precioEdificar;
     }
-    
+
+    public Casilla getCasilla() {
+        return casilla;
+    }
+
     void setHipotecada(boolean hipotecada) {
         this.hipotecada = hipotecada;
     }
 
     /**
      * Añade la casilla a la que le corresponde este titulo de propiedad
+     *
      * @param casilla Debe ser de tipo calle
      */
-    void setCasilla(Casilla casilla){
+    void setCasilla(Casilla casilla) {
         this.casilla = casilla;
     }
-    
-    void setPropietario(Jugador propietario){
+
+    void setPropietario(Jugador propietario) {
         this.propietario = propietario;
     }
 
     /**
-     * 
-     * @param coste 
+     *
+     * @param coste
      */
-    void cobrarAlquiler(int coste){
+    void cobrarAlquiler(int coste) {
         //TO-DO
     }
-    
+
     /**
      * Devuelve si el propietario esta encarcelado
-     * @return 
+     *
+     * @return
      */
-    boolean    propietarioEncarcelado(){
+    boolean propietarioEncarcelado() {
         throw new UnsupportedOperationException("sin implementar");
     }
-    
+
     /**
      * Devuelve si el titulo de la propiedad tiene dueño
-     * @return 
+     *
+     * @return
      */
-    boolean tengoPropietario(){
+    boolean tengoPropietario() {
         throw new UnsupportedOperationException("sin implementar");
     }
-    
-    
+
     @Override
-    public String toString(){
-        return "TituloPropiedad{" + "\n nombre=" + nombre +"\n hipotecado=" 
-                + hipotecada +"\n Factor de Revalorizacion=" + factorRevalorizacion
-                + "\n Alquiler Base="+ alquilerBase+ "\n Hipoteca Base=" 
+    public String toString() {
+        return "TituloPropiedad{" + "\n nombre=" + nombre + "\n hipotecado="
+                + hipotecada + "\n Factor de Revalorizacion=" + factorRevalorizacion
+                + "\n Alquiler Base=" + alquilerBase + "\n Hipoteca Base="
                 + hipotecaBase + "\n Precio Edificar= " + precioEdificar + "}";
     }
-    
+
 }
