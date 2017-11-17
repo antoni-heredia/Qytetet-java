@@ -101,9 +101,15 @@ public class Tablero {
     boolean esCasillaCarcel(int numeroCasilla) {
         return carcel.getNumeroCasilla() == numeroCasilla;
     }
-
+    
+     /**
+     * Devuelve la casilla que se le pide
+     *
+     * @return el objeto casilla en la posicion numeroCasilla
+     *
+     */
     Casilla obtenerCasillaNumero(int numeroCasilla) {
-        throw new UnsupportedOperationException("sin implementar");
+        return casillas.get(numeroCasilla);
     }
 
     /**

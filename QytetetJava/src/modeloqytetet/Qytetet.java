@@ -93,11 +93,27 @@ public class Qytetet {
     }
 
     public ArrayList propiedadesHipotecadasJugador(boolean hipotecadas) {
-        throw new UnsupportedOperationException("sin implementar");
-    }
+        ArrayList<Casilla> casillas = null;
+        ArrayList<TituloPropiedad> titulos = jugadorActual.getPropiedades();
+        for(int i = 0; i < titulos.size(); i++){
+            
+            if(hipotecadas == titulos.get(i).getHipotecada())
+                casillas.add(titulos.get(i).getCasilla());
+        }
+        
+        return casillas;
 
-    public Jugador siguienteJugador(Casilla casilla) {
-        throw new UnsupportedOperationException("sin implementar");
+    }
+ /**
+     * Cambia el jugador actual al siguiente jugador
+     *
+     * 
+     */
+    public void siguienteJugador() {
+        int posicion_jugador_actual = jugadores.indexOf(jugadorActual);
+        jugadorActual = jugadores.get(posicion_jugador_actual % MAX_JUGADORES);
+        
+       
     }
 
     public boolean venderPropiedad(Casilla casilla) {

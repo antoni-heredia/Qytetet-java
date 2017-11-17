@@ -116,9 +116,14 @@ public class Casilla {
     int edificarHotel() {
         throw new UnsupportedOperationException("sin implementar");
     }
-
-    boolean estadoHipoteca() {
-        throw new UnsupportedOperationException("sin implementar");
+    
+    /**
+     * Se mira si la casilla esta hipotecada
+     * 
+     * @return devuelve true si lo esta y false si no lo esta.
+     */
+    boolean estaHipoteca() {
+        return titulo.getHipotecada();
     }
 
     int getCosteHipoteca() {

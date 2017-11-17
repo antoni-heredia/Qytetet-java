@@ -119,7 +119,11 @@ public class TituloPropiedad {
      * @return
      */
     boolean tengoPropietario() {
-        throw new UnsupportedOperationException("sin implementar");
+        boolean propietario = false;
+        if(this.propietario != null)
+            propietario = true;
+        
+        return propietario;
     }
 
     @Override

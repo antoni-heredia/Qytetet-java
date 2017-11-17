@@ -122,12 +122,18 @@ public class Jugador {
     }
 
     /**
-     *
-     * @return
+     *Elimina la carta libertad si no era nula y la devuelve
+     * 
+     * @return devuelve la cartaLibertad o null en caso de que el jugador no la tenga.
      */
-    Sorpresa devolverCartaLibertad() throws UnsupportedOperationException {
-        //TODO : Implementar el metodo
-        throw new UnsupportedOperationException("sin implementar");
+    Sorpresa devolverCartaLibertad(){
+        Sorpresa libertad = null;
+        if(cartaLibertad != null){
+            libertad = cartaLibertad;
+            cartaLibertad = null;
+        }
+        
+        return libertad;
     }
 
     /**
@@ -140,12 +146,11 @@ public class Jugador {
     }
 
     /**
-     *
-     * @param Cantidad
+     *añade un nuevo saldo restando si es negativo o sumado si es positivo
+     * @param Cantidad el sado se sumara o restara este valor
      */
-    void modificarSaldo(int Cantidad) throws UnsupportedOperationException {
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    void modificarSaldo(int Cantidad){
+        saldo += Cantidad;
     }
 
     /**
@@ -240,23 +245,29 @@ public class Jugador {
     }
 
     /**
-     *
+     * Comprueba si la casilla es de mi propiedad y si no esta hipoteca
      * @param casilla
-     * @return
+     * @return true si es de mi propiedad y no esta hipotecada fase en otro caso
      */
-    boolean puedoVenderPropiedad(Casilla casilla) throws UnsupportedOperationException {
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    boolean puedoVenderPropiedad(Casilla casilla){
+       boolean vender = false;
+       if(this.esDeMiPropiedad(casilla) && !casilla.getTitulo().getHipotecada())
+           vender = true;
+       
+       return vender;
     }
 
     /**
-     *
-     * @param carta
-     * @return
+     * Comrpueba si se tiene carta libertad
+     * 
+     * @return bool true si se tiene carta false si no se tiene.
      */
-    boolean tengoCartaLiberdad(Sorpresa carta) throws UnsupportedOperationException {
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    boolean tengoCartaLiberdad(){
+        boolean libertad = false;
+        if(cartaLibertad != null)
+            libertad = true;
+        
+        return libertad;
     }
 
     /**

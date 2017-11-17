@@ -5,6 +5,8 @@
  */
 package modeloqytetet;
 
+import java.util.Random;
+
 /**
  *
  * @author antonio
@@ -21,11 +23,15 @@ public class Dado {
     }
     
     /**
+     * Se tira el dado para que de un numero aleatorio de 1 - 6
      * 
-     * @return 
+     * @return numero de la tirada del dado
      */
     int Tirar(){
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+        Random aleatorio = new Random(System.currentTimeMillis());
+        int intAleatorio = aleatorio.nextInt(6) + 1;
+        
+        return intAleatorio;
+        
     }
 }
