@@ -138,7 +138,6 @@ public class Qytetet {
         Casilla salida = tablero.obtenerCasillaNumero(0);
         for (int i = 0; i < jugadores.size(); i++) {
             jugadores.get(i).actualizarPosicion(salida);
-            jugadores.get(i).modificarSaldo(SALDO_SALIDA);
         }
         jugadorActual = jugadores.get((int) (Math.random() * jugadores.size()) + 1);
     }
