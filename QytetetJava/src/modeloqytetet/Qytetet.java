@@ -50,7 +50,19 @@ public class Qytetet {
     }
 
     public boolean edificarCasa(Casilla casilla) {
-        throw new UnsupportedOperationException("sin implementar");
+        boolean puedoEdificar = false;
+        if (casilla.soyEdificable()) {
+            boolean sePuedeEdificar = casilla.sePuedeEdificarCasa();
+            if (sePuedeEdificar) {
+                puedoEdificar = jugadorActual.puedoEdificarCasa(casilla);
+                if (puedoEdificar) {
+                    int costeEdificarCasa = casilla.edificarCasa();
+                    jugadorActual.modificarSaldo(costeEdificarCasa);
+
+                }
+            }
+        }
+        return puedoEdificar;
     }
 
     public boolean edificarHotel(Casilla casilla) {
@@ -87,52 +99,83 @@ public class Qytetet {
     public boolean jugar() {
         throw new UnsupportedOperationException("sin implementar");
     }
-
-    public List obtenerRanking() {
-        throw new UnsupportedOperationException("sin implementar");
-    }
-
-    public ArrayList propiedadesHipotecadasJugador(boolean hipotecadas) {
-        ArrayList<Casilla> casillas = null;
-        ArrayList<TituloPropiedad> titulos = jugadorActual.getPropiedades();
-        for(int i = 0; i < titulos.size(); i++){
-            
-            if(hipotecadas == titulos.get(i).getHipotecada())
-                casillas.add(titulos.get(i).getCasilla());
-        }
-        
-        return casillas;
-
-    }
- /**
-     * Cambia el jugador actual al siguiente jugador
-     *
-     * 
-     */
-    public void siguienteJugador() {
-        int posicion_jugador_actual = jugadores.indexOf(jugadorActual);
-        jugadorActual = jugadores.get(posicion_jugador_actual % MAX_JUGADORES);
-        
-       
-    }
-
-    public boolean venderPropiedad(Casilla casilla) {
-        throw new UnsupportedOperationException("sin implementar");
-    }
     
     /**
      * 
      * @return 
      */
-    public ArrayList<Jugador> getJugadores(){
+    public List obtenerRanking() {
+        List ranking = null;
+        
+        for(Jugador jugador : jugadores){
+            int capital = jugador.obtenerCapital();
+            ranking.add(capital, jugador.getNombre());
+        }
+        
+        return ranking;
+    }
+
+    public ArrayList propiedadesHipotecadasJugador(boolean hipotecadas) {
+        ArrayList<Casilla> casillas = null;
+        ArrayList<TituloPropiedad> titulos = jugadorActual.getPropiedades();
+        for (int i = 0; i < titulos.size(); i++) {
+
+            if (hipotecadas == titulos.get(i).getHipotecada()) {
+                casillas.add(titulos.get(i).getCasilla());
+            }
+        }
+
+        return casillas;
+
+    }
+
+    /**
+     * Cambia el jugador actual al siguiente jugador
+     *
+     *
+     */
+    public void siguienteJugador() {
+        int posicion_jugador_actual = jugadores.indexOf(jugadorActual);
+        jugadorActual = jugadores.get(posicion_jugador_actual % MAX_JUGADORES);
+
+    }
+
+    /**
+     *
+     * @param casilla
+     * @return
+     */
+    public boolean venderPropiedad(Casilla casilla) {
+        boolean puedoVender = false;
+        if (casilla.soyEdificable()) {
+            puedoVender = jugadorActual.puedoVenderPropiedad(casilla);
+            if (puedoVender) {
+                jugadorActual.venderPropiedad(casilla);
+            }
+        }
+        return puedoVender;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Jugador> getJugadores() {
         return jugadores;
     }
-    
+
     private void encarcelarJugador() {
-        throw new UnsupportedOperationException("sin implementar");
+        if(!jugadorActual.tengoCartaLiberdad()){
+            Casilla casillaCarcel = tablero.getCarcel();
+            jugadorActual.irACarcel(casillaCarcel);
+        }else{
+            Sorpresa cartaCarcel = jugadorActual.devolverCartaLibertad();
+            mazo.add(cartaCarcel);
+        }
     }
+
     /**
-     * 
+     *
      */
     private void salidaJugadores() {
         Casilla salida = tablero.obtenerCasillaNumero(0);

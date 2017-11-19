@@ -101,7 +101,7 @@ public class TituloPropiedad {
      * @param coste
      */
     void cobrarAlquiler(int coste) {
-        //TO-DO
+        propietario.modificarSaldo(coste);
     }
 
     /**
@@ -110,7 +110,7 @@ public class TituloPropiedad {
      * @return
      */
     boolean propietarioEncarcelado() {
-        throw new UnsupportedOperationException("sin implementar");
+        return propietario.getEncarcelado();
     }
 
     /**

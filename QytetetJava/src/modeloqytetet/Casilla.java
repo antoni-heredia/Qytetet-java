@@ -106,20 +106,25 @@ public class Casilla {
     }
 
     int cobrarAlquiler() {
-        throw new UnsupportedOperationException("sin implementar");
+        int costeTotal = titulo.getAlquilerBase();
+        costeTotal += numCasas * 0.5 + numHoteles * 2;
+        titulo.cobrarAlquiler(costeTotal);
+
+        return costeTotal;
     }
 
     int edificarCasa() {
-        throw new UnsupportedOperationException("sin implementar");
+        setNumCasas(numCasas + 1);
+        return titulo.getPrecioEdificar();
     }
 
     int edificarHotel() {
         throw new UnsupportedOperationException("sin implementar");
     }
-    
+
     /**
      * Se mira si la casilla esta hipotecada
-     * 
+     *
      * @return devuelve true si lo esta y false si no lo esta.
      */
     boolean estaHipoteca() {
@@ -131,7 +136,7 @@ public class Casilla {
     }
 
     int getPrecioEdificar() {
-        throw new UnsupportedOperationException("sin implementar");
+        return titulo.getPrecioEdificar();
     }
 
     int hipotecar() {
@@ -147,7 +152,7 @@ public class Casilla {
     }
 
     boolean sePuedeEdificarCasa() {
-        throw new UnsupportedOperationException("sin implementar");
+        return (numCasas < 4);
     }
 
     boolean sePuedeEdificarHotel() {
@@ -163,11 +168,24 @@ public class Casilla {
     }
 
     boolean tengoPropietario() {
-        throw new UnsupportedOperationException("sin implementar");
+        return titulo.tengoPropietario();
+    }
+
+    /**
+     *
+     * @return
+     */
+    boolean propietarioEncarcelado() {
+        return titulo.propietarioEncarcelado();
     }
 
     int venderTitulo() {
-        throw new UnsupportedOperationException("sin implementar");
+        this.setNumCasas(0);
+        this.setNumHoteles(0);
+        titulo.setPropietario(null);
+        int precioCompra = coste + (numCasas+numHoteles)*titulo.getPrecioEdificar();
+        int precioVenta = (int) (precioCompra+precioCompra*titulo.getFactorRevalorizacion());
+        return precioVenta;
     }
 
     private void asignarTituloPropiedad() {
