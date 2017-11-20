@@ -102,7 +102,10 @@ public class Casilla {
     }
 
     int calcularValorHipoteca() {
-        throw new UnsupportedOperationException("sin implementar");
+        int hipotecaBase = titulo.getHipotecaBase();
+        int valor =  hipotecaBase + (int)(numCasas * 0.5 * hipotecaBase + numHoteles * hipotecaBase);
+        
+        return valor;
     }
 
     int cobrarAlquiler() {
@@ -119,7 +122,8 @@ public class Casilla {
     }
 
     int edificarHotel() {
-        throw new UnsupportedOperationException("sin implementar");
+        setNumCasas(numHoteles + 1);
+        return titulo.getPrecioEdificar();
     }
 
     /**
@@ -140,7 +144,11 @@ public class Casilla {
     }
 
     int hipotecar() {
-        throw new UnsupportedOperationException("sin implementar");
+        titulo.setHipotecada(true);
+        int cantidadRecibida = this.calcularValorHipoteca();
+        
+        
+       return cantidadRecibida;
     }
 
     int precioTotalComprar() {
@@ -156,7 +164,7 @@ public class Casilla {
     }
 
     boolean sePuedeEdificarHotel() {
-        throw new UnsupportedOperationException("sin implementar");
+        return (numHoteles < 4);
     }
 
     /**
@@ -188,8 +196,9 @@ public class Casilla {
         return precioVenta;
     }
 
-    private void asignarTituloPropiedad() {
-        throw new UnsupportedOperationException("sin implementar");
+    private TituloPropiedad asignarTituloPropiedad(Jugador jugador) {
+        titulo.setPropietario(jugador);
+        return titulo;
     }
 
 }

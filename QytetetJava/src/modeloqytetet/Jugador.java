@@ -68,14 +68,7 @@ public class Jugador {
      *
      * @param carta Debe ser una carta de tipo SalirCarcel
      */
-    void setCartaLibertad(Sorpresa carta) throws Exception {
-
-        //Si la carta no es del tipo salir carcel lanzamos una excepcion
-        if (carta.getTipo() != TipoSorpresa.SALIRCARCEL) {
-            throw new Exception("La carta no es"
-                    + " de salir carcel");
-        }
-
+    void setCartaLibertad(Sorpresa carta) {
         this.cartaLibertad = carta;
     }
 
@@ -142,8 +135,24 @@ public class Jugador {
      * @return
      */
     boolean comprarTitulo() throws UnsupportedOperationException {
-        //TODO : Implementar el metodo
-        throw new UnsupportedOperationException("sin implementar");
+        boolean comprar = false;
+        if(casillaActual.soyEdificable()){
+            boolean tengoPropietario = casillaActual.tengoPropietario();
+            
+            if(!tengoPropietario){
+                int costeCompra = casillaActual.getCoste();
+                
+                if(costeCompra <= saldo){
+                    TituloPropiedad titulo = casillaActual.asignarPropietario(this);
+                    propiedades.add(titulo);
+                    this.modificarSaldo(-costeCompra);
+                    comprar = true;
+                }
+                
+            }
+        }
+
+        return comprar;
     }
 
     /**
@@ -217,9 +226,9 @@ public class Jugador {
      *
      * @param cantidad
      */
-    void pagarCobrarPorCasaYHotel(int cantidad) throws UnsupportedOperationException {
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    void pagarCobrarPorCasaYHotel(int cantidad) {
+        int numeroTotal = cuantasCasasHotelTengo();
+        modificarSaldo(numeroTotal*cantidad);
     }
 
     /**
@@ -227,9 +236,12 @@ public class Jugador {
      * @param cantidad
      * @return
      */
-    boolean pagarLibertad(int cantidad) throws UnsupportedOperationException {
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    boolean pagarLibertad(int cantidad){
+        boolean tengoSaldo = tengoSaldo(cantidad);
+        if(tengoSaldo)
+            modificarSaldo(cantidad);
+        
+        return tengoSaldo;
     }
 
     /**
@@ -237,7 +249,7 @@ public class Jugador {
      * @param casilla
      * @return
      */
-    boolean puedoEdificarCasa(Casilla casilla) throws UnsupportedOperationException {
+    boolean puedoEdificarCasa(Casilla casilla) {
         boolean puedoEficiar = false;
         if (esDeMiPropiedad(casilla)) {
             int precio = casilla.getPrecioEdificar();
@@ -252,19 +264,24 @@ public class Jugador {
      * @param casilla
      * @return
      */
-    boolean puedoEdificarHotel(Casilla casilla) throws UnsupportedOperationException {
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    boolean puedoEdificarHotel(Casilla casilla) throws UnsupportedOperationException{
+        boolean puedoEficiar = false;
+        if (esDeMiPropiedad(casilla)) {
+            int precio = casilla.getPrecioEdificar();
+            puedoEficiar = tengoSaldo(precio);
+        }
+
+        return puedoEficiar;
     }
 
     /**
      *
      * @param casilla
-     * @return
+     * @return true si se puede hipotecar
      */
-    boolean puedoHipotecar(Casilla casilla) throws UnsupportedOperationException {
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    boolean puedoHipotecar(Casilla casilla){
+        return this.esDeMiPropiedad(casilla);
+        
     }
 
     /**
