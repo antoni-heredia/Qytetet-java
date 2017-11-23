@@ -264,7 +264,7 @@ public class Jugador {
      * @param casilla
      * @return
      */
-    boolean puedoEdificarHotel(Casilla casilla) throws UnsupportedOperationException{
+    boolean puedoEdificarHotel(Casilla casilla){
         boolean puedoEficiar = false;
         if (esDeMiPropiedad(casilla)) {
             int precio = casilla.getPrecioEdificar();
@@ -289,9 +289,11 @@ public class Jugador {
      * @param casilla
      * @return
      */
-    boolean puedoPagarHipoteca(Casilla casilla) throws UnsupportedOperationException {
-        //TODO
-        throw new UnsupportedOperationException("sin implementar");
+    boolean puedoPagarHipoteca(Casilla casilla) {
+        boolean puedoPagar= false;
+        if(casilla.getCosteHipoteca()<=saldo && this.esDeMiPropiedad(casilla))
+                puedoPagar = true;
+        return puedoPagar;
     }
 
     /**

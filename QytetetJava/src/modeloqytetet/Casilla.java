@@ -92,13 +92,14 @@ public class Casilla {
     }
 
     TituloPropiedad asignarPropietario(Jugador jugador) {
-
-        return null;
+        titulo.setPropietario(jugador);
+        return titulo;
     }
 
     int cancelarHipoteca() {
-
-        throw new UnsupportedOperationException("sin implementar");
+        int valorCancelar = getCosteHipoteca();
+        titulo.setHipotecada(false);
+        return valorCancelar;
     }
 
     int calcularValorHipoteca() {
@@ -136,7 +137,7 @@ public class Casilla {
     }
 
     int getCosteHipoteca() {
-        throw new UnsupportedOperationException("sin implementar");
+        return (int) (calcularValorHipoteca()*1.1);
     }
 
     int getPrecioEdificar() {
