@@ -123,7 +123,8 @@ public class Casilla {
     }
 
     int edificarHotel() {
-        setNumCasas(numHoteles + 1);
+        setNumHoteles(numHoteles + 1);
+        setNumCasas(numCasas - 4);
         return titulo.getPrecioEdificar();
     }
 
@@ -165,7 +166,7 @@ public class Casilla {
     }
 
     boolean sePuedeEdificarHotel() {
-        return (numHoteles < 4);
+        return (numHoteles < 4 && numCasas == 4);
     }
 
     /**

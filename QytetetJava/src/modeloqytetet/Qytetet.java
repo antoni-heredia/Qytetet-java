@@ -122,7 +122,7 @@ public class Qytetet {
                 puedoEdificar = jugadorActual.puedoEdificarHotel(casilla);
                 if (puedoEdificar) {
                     int costeEdificarHotel = casilla.edificarHotel();
-                    jugadorActual.modificarSaldo(costeEdificarHotel);
+                    jugadorActual.modificarSaldo(-costeEdificarHotel);
 
                 }
             }
