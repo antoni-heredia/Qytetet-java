@@ -106,7 +106,7 @@ public class Qytetet {
                 puedoEdificar = jugadorActual.puedoEdificarCasa(casilla);
                 if (puedoEdificar) {
                     int costeEdificarCasa = casilla.edificarCasa();
-                    jugadorActual.modificarSaldo(costeEdificarCasa);
+                    jugadorActual.modificarSaldo(-costeEdificarCasa);
 
                 }
             }
