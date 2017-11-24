@@ -213,13 +213,15 @@ public class Jugador {
      */
     ArrayList<TituloPropiedad> obtenerPropiedadesHipotecadas(boolean hipotecadas) {
 
-        ArrayList<TituloPropiedad> titulos_hipotecados = new ArrayList();
+        ArrayList<TituloPropiedad> titulosDevolver = new ArrayList();
         for (TituloPropiedad t : propiedades) {
-            if (t.getHipotecada()) {
-                titulos_hipotecados.add(t);
-            }
+            if (t.getHipotecada() && hipotecadas) 
+                titulosDevolver.add(t);
+            else if(!t.getHipotecada() && !hipotecadas)
+                titulosDevolver.add(t);
+            
         }
-        return titulos_hipotecados;
+        return titulosDevolver;
     }
 
     /**

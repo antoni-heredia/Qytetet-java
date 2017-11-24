@@ -63,7 +63,7 @@ public class Qytetet {
             for (Jugador jugador : jugadores) {
                 if (jugadorActual != jugador) {
                     jugador.modificarSaldo(cartaActual.getValor());
-                    jugadorActual.modificarSaldo(cartaActual.getValor());
+                    jugadorActual.modificarSaldo(-cartaActual.getValor());
                 }
 
             }
