@@ -197,6 +197,7 @@ public class Qytetet {
                 encarcelarJugador();
             } else if (nuevaCasilla.getTipo() == TipoCasilla.SORPRESA) {
                 cartaActual = mazo.get(0);
+                mazo.remove(0);
             }
 
         }
