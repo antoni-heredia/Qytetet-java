@@ -39,12 +39,28 @@ public class VistaTextualQytetet {
         return salida;
     }
 
-// public int menuSalirCarcel(){
-//    //eleccion de metodo para salir de la carcel. Por completar
-// }
-//  public boolean elegirQuieroComprar(){
-//    // se pide si o no se quiere comprar una propiedad. Por completar
-// }
+    public int menuSalirCarcel() {
+
+        this.mostrar("La opcion que deseas usar");
+        Map<Integer, String> menuGI = new TreeMap();
+        menuGI.put(0, "Pagar multa");
+        menuGI.put(1, "Tirar dado");
+
+        int salida = this.seleccionMenu(menuGI); // Método para controlar la elección correcta en el menú 
+        return salida;
+    }
+
+    public boolean elegirQuieroComprar() {
+        // se pide si o no se quiere comprar una propiedad.
+        this.mostrar("Quiere comprar la propiedad");
+        Map<Integer, String> menuGI = new TreeMap();
+        menuGI.put(0, "Comprar propiedad");
+        menuGI.put(1, "No comprar propiedad");
+
+        int salida = this.seleccionMenu(menuGI); // Método para controlar la elección correcta en el menú 
+        return 0 == salida;
+    }
+
     public int menuElegirPropiedad(ArrayList<String> listaPropiedades) {  //numero y nombre de propiedades            
         Map<Integer, String> menuEP = new TreeMap();
         int numeroOpcion = 0;
@@ -118,5 +134,4 @@ public class VistaTextualQytetet {
         System.out.println(texto);
     }
 
-  
 }

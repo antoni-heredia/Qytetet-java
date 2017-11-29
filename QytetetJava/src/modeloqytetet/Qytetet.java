@@ -7,6 +7,7 @@ package modeloqytetet;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -163,9 +164,12 @@ public class Qytetet {
 
     public void inicializarJuego(ArrayList<String> nombres) {
         //throw new UnsupportedOperationException("sin implementar");
-        inicializarTablero();
         inicializarJugadores(nombres);
+        inicializarTablero();
         inicializarCartasSorpresa();
+
+        salidaJugadores();
+        
     }
 
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo) {
@@ -209,12 +213,13 @@ public class Qytetet {
      *
      * @return
      */
-    public List obtenerRanking() {
-        List ranking = null;
+    public Hashtable obtenerRanking() {
+        Hashtable<String, Integer> ranking = new Hashtable<String, Integer>();
+   
 
         for (Jugador jugador : jugadores) {
             int capital = jugador.obtenerCapital();
-            ranking.add(capital, jugador.getNombre());
+            ranking.put(jugador.getNombre(),capital);
         }
 
         return ranking;
@@ -285,9 +290,9 @@ public class Qytetet {
     private void salidaJugadores() {
         Casilla salida = tablero.obtenerCasillaNumero(0);
         for (int i = 0; i < jugadores.size(); i++) {
-            jugadores.get(i).actualizarPosicion(salida);
+            jugadores.get(i).setCasillaActual(salida);
         }
-        jugadorActual = jugadores.get((int) (Math.random() * jugadores.size()) + 1);
+        jugadorActual = jugadores.get((int) (Math.random() * jugadores.size()));
     }
 
     private void inicializarCartasSorpresa() {
