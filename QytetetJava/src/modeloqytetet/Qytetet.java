@@ -334,7 +334,9 @@ public class Qytetet {
         jugadores = new ArrayList(nombres.size());
 
         for (String nombre : nombres) {
+            
             jugadores.add(new Jugador(nombre));
+            
         }
     }
 
