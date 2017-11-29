@@ -53,7 +53,7 @@ public class Casilla {
         this.titulo = titulo;
     }
 
-    int getNumeroCasilla() {
+    public int getNumeroCasilla() {
         return numeroCasilla;
     }
 
