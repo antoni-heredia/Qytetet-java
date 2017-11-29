@@ -244,10 +244,10 @@ public class Qytetet {
      *
      *
      */
-    public void siguienteJugador() {
+    public Jugador siguienteJugador() {
         int posicion_jugador_actual = jugadores.indexOf(jugadorActual);
         jugadorActual = jugadores.get(posicion_jugador_actual % MAX_JUGADORES);
-
+        return jugadorActual;
     }
 
     /**
