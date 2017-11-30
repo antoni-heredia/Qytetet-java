@@ -134,7 +134,7 @@ public class Jugador {
      *
      * @return
      */
-    boolean comprarTitulo() throws UnsupportedOperationException {
+    boolean comprarTitulo(){
         boolean comprar = false;
         if(casillaActual.soyEdificable()){
             boolean tengoPropietario = casillaActual.tengoPropietario();
@@ -147,6 +147,7 @@ public class Jugador {
                     propiedades.add(titulo);
                     this.modificarSaldo(-costeCompra);
                     comprar = true;
+                    System.out.print(saldo + "aaaaa\n" + -costeCompra);
                 }
                 
             }
@@ -185,8 +186,8 @@ public class Jugador {
      *
      * @param Cantidad el sado se sumara o restara este valor
      */
-    void modificarSaldo(int Cantidad) {
-        saldo += Cantidad;
+    void modificarSaldo(int cantidad) {
+        saldo += cantidad;
     }
 
     /**

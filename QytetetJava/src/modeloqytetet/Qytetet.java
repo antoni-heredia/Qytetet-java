@@ -178,7 +178,7 @@ public class Qytetet {
         if (metodo == MetodoSalirCarcel.TIRANDODADO) {
             int valorDado = dado.Tirar();
             libre = valorDado > 5;
-        } else if (metodo == MetodoSalirCarcel.TIRANDODADO) {
+        } else if (metodo == MetodoSalirCarcel.PAGANDOLIBERTAD) {
             boolean tengoSaldo = jugadorActual.pagarLibertad(-PREICIO_LIBERTAD);
             libre = tengoSaldo;
         }

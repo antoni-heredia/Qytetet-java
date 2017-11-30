@@ -35,10 +35,10 @@ public class ControladorQytetet {
                 vista.mostrar("Esta usted en la carcel: \n");
                 libre = false;
                 switch (vista.menuSalirCarcel()) {
-                    case 1:
+                    case 0:
                         libre = juego.intentarSalirCarcel(MetodoSalirCarcel.PAGANDOLIBERTAD);
                         break;
-                    case 2:
+                    case 1:
                         libre = juego.intentarSalirCarcel(MetodoSalirCarcel.TIRANDODADO);
                         break;
                 }
