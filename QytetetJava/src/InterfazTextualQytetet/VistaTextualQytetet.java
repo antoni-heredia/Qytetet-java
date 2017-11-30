@@ -17,7 +17,11 @@ import java.util.TreeMap;
 public class VistaTextualQytetet {
 
     private static final Scanner in = new Scanner(System.in);
-
+    
+    void pausa(){
+        this.mostrar("Pulse enter para continuar:\n");
+        in.nextLine();
+    }
     public int menuGestionInmobiliaria() { //ejemplo de menú
 
         this.mostrar("Elige la gestion inmobiliaria que deseas hacer");

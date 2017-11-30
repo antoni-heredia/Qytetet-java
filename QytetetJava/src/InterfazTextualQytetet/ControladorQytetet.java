@@ -28,8 +28,11 @@ public class ControladorQytetet {
 
     private static void desarolloJuego() {
         while (!bancarrota()) {
+           vista.mostrar("Turno de: \n" + jugador.toString());
+            
             boolean libre = true;
             if (jugador.getEncarcelado()) {
+                vista.mostrar("Esta usted en la carcel: \n");
                 libre = false;
                 switch (vista.menuSalirCarcel()) {
                     case 1:
@@ -44,13 +47,19 @@ public class ControladorQytetet {
                     vista.mostrar("No has podido salir de la carcel");
 
                 } else {
-                    vista.mostrar("El jugador ha salido de la carcel");
+                    vista.mostrar("El jugador ha salido de la carcel(Su nuevo saldo es "
+                            + jugador.getSaldo() + ")");
+                    vista.pausa();
                 }
+                vista.pausa();
             }
 
             if (libre) {
+                vista.pausa();
                 boolean notienepropietario = juego.jugar();
                 casilla = jugador.getCasillaActual();
+                
+                vista.mostrar("\n Estado actual del jugador: " + jugador.toString());
                 /*
             Hya que volver a comprar 
                  */
@@ -59,6 +68,7 @@ public class ControladorQytetet {
                     if (!jugador.getEncarcelado()) {
 
                         if (casilla.getTipo() == TipoCasilla.CALLE) {
+                            vista.mostrar(casilla.toString());
                             if (!notienepropietario) {
                                 boolean comprar = vista.elegirQuieroComprar();
                                 if (comprar) {
@@ -71,6 +81,9 @@ public class ControladorQytetet {
 
                             }
                         } else if (casilla.getTipo() == TipoCasilla.SORPRESA) {
+                            vista.mostrar("Ha caido en la carta sorpresa\n");    
+                            vista.mostrar("La carte que le ha tocado es: " + juego.getCartaActual().toString() +"\n");
+                            
                             notienepropietario = juego.aplicarSorpresa();
                             casilla = jugador.getCasillaActual();
                             if (!jugador.getEncarcelado()) {
@@ -102,12 +115,14 @@ public class ControladorQytetet {
                                     case 0:
                                         break;
                                     case 1:
+                                        vista.mostrar("Todas tus propiedades: \n");
                                         casillas = juego.propiedadesHipotecadasJugador(true);
                                         casillas.addAll(juego.propiedadesHipotecadasJugador(false));
                                         casillaElegida = elegirPropiedad(casillas);
                                         juego.edificarCasa(casillaElegida);
                                         break;
                                     case 2:
+                                        vista.mostrar("Todas tus propiedades: \n");
                                         casillas = juego.propiedadesHipotecadasJugador(true);
                                         casillas.addAll(juego.propiedadesHipotecadasJugador(false));
                                         casillaElegida = elegirPropiedad(casillas);
@@ -115,25 +130,29 @@ public class ControladorQytetet {
 
                                         break;
                                     case 3:
+                                        vista.mostrar("Tus propiedades no hipotecadas: \n");
                                         casillas = juego.propiedadesHipotecadasJugador(false);
                                         casillaElegida = elegirPropiedad(casillas);
                                         juego.venderPropiedad(casillaElegida);
 
                                         break;
                                     case 4:
+                                        vista.mostrar("Tus propiedades no Hipotecadas: \n");
                                         casillas = juego.propiedadesHipotecadasJugador(false);
                                         casillaElegida = elegirPropiedad(casillas);
                                         juego.hipotecarPropiedad(casillaElegida);
 
                                         break;
                                     case 5:
+                                        vista.mostrar("Tus propiedades hipotecadas: \n");
                                         casillas = juego.propiedadesHipotecadasJugador(true);
                                         casillaElegida = elegirPropiedad(casillas);
                                         juego.cancelarHipoteca(casillaElegida);
                                         break;
                                 }
                             }
-                        }
+                        }else if(!jugador.tengoPropiedades())
+                            vista.mostrar("Usted no tiene propiedades para gestionar\n");
 
                     }
                 }
@@ -141,6 +160,9 @@ public class ControladorQytetet {
 
             if (!bancarrota()) {
                 jugador = juego.siguienteJugador();
+                casilla = jugador.getCasillaActual();
+                
+
             }
         }
         System.out.println(juego.obtenerRanking());
@@ -172,6 +194,8 @@ public class ControladorQytetet {
         casilla = jugador.getCasillaActual();
 
         //System.out.println(juego.toString());
+        //vista.pausa();
+
     }
 
     public static void main(String[] args) {

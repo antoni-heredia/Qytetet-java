@@ -128,10 +128,18 @@ public class TituloPropiedad {
 
     @Override
     public String toString() {
-        return "TituloPropiedad{" + "\n nombre=" + nombre + "\n hipotecado="
+        String cadena = "TituloPropiedad{" + "\n nombre=" + nombre + "\n hipotecado="
                 + hipotecada + "\n Factor de Revalorizacion=" + factorRevalorizacion
                 + "\n Alquiler Base=" + alquilerBase + "\n Hipoteca Base="
-                + hipotecaBase + "\n Precio Edificar= " + precioEdificar + "}";
+                + hipotecaBase + "\n Precio Edificar= " + precioEdificar + "\n Propietario= ";
+        if (propietario != null){
+            cadena += propietario.getNombre();
+        }else{
+            cadena += "Sin propietari";
+        }
+        cadena += "\n";
+        return cadena;
+         
     }
 
 }

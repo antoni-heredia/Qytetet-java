@@ -226,7 +226,7 @@ public class Qytetet {
     }
 
     public ArrayList propiedadesHipotecadasJugador(boolean hipotecadas) {
-        ArrayList<Casilla> casillas = null;
+        ArrayList<Casilla> casillas = new ArrayList();
         ArrayList<TituloPropiedad> titulos = jugadorActual.getPropiedades();
         for (int i = 0; i < titulos.size(); i++) {
 
