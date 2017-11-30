@@ -45,13 +45,12 @@ public class ControladorQytetet {
 
                 if (!libre) {
                     vista.mostrar("No has podido salir de la carcel");
+                    vista.pausa();
 
                 } else {
                     vista.mostrar("El jugador ha salido de la carcel(Su nuevo saldo es "
                             + jugador.getSaldo() + ")");
-                    vista.pausa();
                 }
-                vista.pausa();
             }
 
             if (libre) {

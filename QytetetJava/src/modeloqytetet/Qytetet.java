@@ -6,6 +6,8 @@
 package modeloqytetet;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
@@ -44,31 +46,31 @@ public class Qytetet {
 
     public boolean aplicarSorpresa() {
         boolean tienePropietario = false;
-        if (cartaActual.getTipo() == TipoSorpresa.PAGARCOBRAR) {
-            jugadorActual.modificarSaldo(cartaActual.getValor());
-
-        } else if (cartaActual.getTipo() == TipoSorpresa.IRACASILLA) {
-            boolean esCarcel = tablero.esCasillaCarcel(cartaActual.getValor());
-
-            if (esCarcel) {
-                encarcelarJugador();
-            } else {
-                Casilla nuevaCasilla = tablero.obtenerCasillaNumero(cartaActual.getValor());
-                tienePropietario = jugadorActual.actualizarPosicion(nuevaCasilla);
-            }
-
-        } else if (cartaActual.getTipo() == TipoSorpresa.PORCASAHOTEL) {
-            jugadorActual.pagarCobrarPorCasaYHotel(cartaActual.getValor());
-
-        } else if (cartaActual.getTipo() == TipoSorpresa.PORJUGADOR) {
-            for (Jugador jugador : jugadores) {
-                if (jugadorActual != jugador) {
-                    jugador.modificarSaldo(cartaActual.getValor());
-                    jugadorActual.modificarSaldo(-cartaActual.getValor());
-                }
-
-            }
-
+        if (null != cartaActual.getTipo()) switch (cartaActual.getTipo()) {
+            case PAGARCOBRAR:
+                jugadorActual.modificarSaldo(cartaActual.getValor());
+                break;
+            case IRACASILLA:
+                boolean esCarcel = tablero.esCasillaCarcel(cartaActual.getValor());
+                if (esCarcel) {
+                    encarcelarJugador();
+                } else {
+                    Casilla nuevaCasilla = tablero.obtenerCasillaNumero(cartaActual.getValor());
+                    tienePropietario = jugadorActual.actualizarPosicion(nuevaCasilla);
+                }   break;
+            case PORCASAHOTEL:
+                jugadorActual.pagarCobrarPorCasaYHotel(cartaActual.getValor());
+                break;
+            case PORJUGADOR:
+                for (Jugador jugador : jugadores) {
+                    if (jugadorActual != jugador) {
+                        jugador.modificarSaldo(cartaActual.getValor());
+                        jugadorActual.modificarSaldo(-cartaActual.getValor());
+                    }
+                    
+                }   break;
+            default:
+                break;
         }
 
         if (cartaActual.getTipo() == TipoSorpresa.SALIRCARCEL) {
@@ -328,6 +330,7 @@ public class Qytetet {
         mazo.add(new Sorpresa("Tus compañeros te han pillado copiandote. "
                 + "Todos te piden dinero por su silencio. Te toca pagar.",
                 -15, TipoSorpresa.PORJUGADOR));
+        Collections.shuffle(mazo);
     }
 
     private void inicializarTablero() {

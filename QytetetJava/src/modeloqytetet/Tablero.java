@@ -119,7 +119,7 @@ public class Tablero {
      * @return
      */
     Casilla obtenerNuevaCasilla(Casilla casilla, int desplazamiento) {
-        return casillas.get(casilla.getNumeroCasilla() + desplazamiento);
+        return casillas.get((casilla.getNumeroCasilla() + desplazamiento)%casillas.size());
     }
 
     @Override
