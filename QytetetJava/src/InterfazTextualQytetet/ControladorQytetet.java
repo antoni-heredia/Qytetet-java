@@ -28,8 +28,8 @@ public class ControladorQytetet {
 
     private static void desarolloJuego() {
         while (!bancarrota()) {
-           vista.mostrar("Turno de: \n" + jugador.toString());
-            
+            vista.mostrar("Turno de: \n" + jugador.toString());
+
             boolean libre = true;
             if (jugador.getEncarcelado()) {
                 vista.mostrar("Esta usted en la carcel: \n");
@@ -58,7 +58,7 @@ public class ControladorQytetet {
                 vista.pausa();
                 boolean notienepropietario = juego.jugar();
                 casilla = jugador.getCasillaActual();
-                
+
                 vista.mostrar("\n Estado actual del jugador: " + jugador.toString());
                 /*
             Hya que volver a comprar 
@@ -81,9 +81,9 @@ public class ControladorQytetet {
 
                             }
                         } else if (casilla.getTipo() == TipoCasilla.SORPRESA) {
-                            vista.mostrar("Ha caido en la carta sorpresa\n");    
-                            vista.mostrar("La carte que le ha tocado es: " + juego.getCartaActual().toString() +"\n");
-                            
+                            vista.mostrar("Ha caido en la carta sorpresa\n");
+                            vista.mostrar("La carte que le ha tocado es: " + juego.getCartaActual().toString() + "\n");
+
                             notienepropietario = juego.aplicarSorpresa();
                             casilla = jugador.getCasillaActual();
                             if (!jugador.getEncarcelado()) {
@@ -106,7 +106,7 @@ public class ControladorQytetet {
 
                         if (!jugador.getEncarcelado() && !bancarrota() && jugador.tengoPropiedades()) {
                             int opcion = 1;
-                            while (opcion != 0) {
+                            while (opcion != 0 && jugador.tengoPropiedades()) {
                                 opcion = vista.menuGestionInmobiliaria();
                                 ArrayList<Casilla> casillas;
                                 Casilla casillaElegida;
@@ -130,29 +130,42 @@ public class ControladorQytetet {
 
                                         break;
                                     case 3:
-                                        vista.mostrar("Tus propiedades no hipotecadas: \n");
                                         casillas = juego.propiedadesHipotecadasJugador(false);
-                                        casillaElegida = elegirPropiedad(casillas);
-                                        juego.venderPropiedad(casillaElegida);
-
+                                        if (!casillas.isEmpty()) {
+                                            vista.mostrar("Tus propiedades no hipotecadas: \n");
+                                            casillaElegida = elegirPropiedad(casillas);
+                                            juego.venderPropiedad(casillaElegida);
+                                        } else {
+                                            vista.mostrar("No tiene propiedades para realizar esta opcion\n");
+                                        }
                                         break;
                                     case 4:
-                                        vista.mostrar("Tus propiedades no Hipotecadas: \n");
                                         casillas = juego.propiedadesHipotecadasJugador(false);
-                                        casillaElegida = elegirPropiedad(casillas);
-                                        juego.hipotecarPropiedad(casillaElegida);
+                                        if (!casillas.isEmpty()) {
+                                            vista.mostrar("Tus propiedades no Hipotecadas: \n");
+                                            casillaElegida = elegirPropiedad(casillas);
+                                            juego.hipotecarPropiedad(casillaElegida);
+                                        } else {
+                                            vista.mostrar("No tiene propiedades para realizar esta opcion\n");
+                                        }
 
                                         break;
                                     case 5:
-                                        vista.mostrar("Tus propiedades hipotecadas: \n");
                                         casillas = juego.propiedadesHipotecadasJugador(true);
-                                        casillaElegida = elegirPropiedad(casillas);
-                                        juego.cancelarHipoteca(casillaElegida);
+                                        if (!casillas.isEmpty()) {
+                                            vista.mostrar("Tus propiedades hipotecadas: \n");
+                                            casillaElegida = elegirPropiedad(casillas);
+                                            juego.cancelarHipoteca(casillaElegida);
+                                        } else {
+                                            vista.mostrar("No tiene propiedades para realizar esta opcion\n");
+                                        }
                                         break;
                                 }
                             }
-                        }else if(!jugador.tengoPropiedades())
+                        }
+                        if (!jugador.tengoPropiedades() && !jugador.getEncarcelado() && !bancarrota()) {
                             vista.mostrar("Usted no tiene propiedades para gestionar\n");
+                        }
 
                     }
                 }
@@ -161,7 +174,6 @@ public class ControladorQytetet {
             if (!bancarrota()) {
                 jugador = juego.siguienteJugador();
                 casilla = jugador.getCasillaActual();
-                
 
             }
         }
@@ -195,7 +207,6 @@ public class ControladorQytetet {
 
         //System.out.println(juego.toString());
         //vista.pausa();
-
     }
 
     public static void main(String[] args) {

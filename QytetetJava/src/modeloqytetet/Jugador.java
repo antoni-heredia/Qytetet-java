@@ -354,9 +354,12 @@ public class Jugador {
      * @param casilla
      */
     private void eliminarDeMisPropiedades(Casilla casilla) {
-        for (TituloPropiedad t : propiedades) {
+        boolean eliminada = false;
+        for (int i = 0; i < propiedades.size() && !eliminada; i++) {
+            TituloPropiedad t = propiedades.get(i);
             if (t.getCasilla().getNumeroCasilla() == casilla.getNumeroCasilla()) {
-                propiedades.remove(t);
+                propiedades.remove(t);      
+                eliminada = true;
             }
         }
     }
