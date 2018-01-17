@@ -40,6 +40,16 @@ public class Casilla {
         this.numCasas = 0;
         titulo.setCasilla(this);
     }
+    
+    //Contructor para casillas que son impuesto
+    public Casilla(int numeroCasilla, int coste, TipoCasilla tipo) {
+        this.numeroCasilla = numeroCasilla;
+        this.coste = coste;
+        this.tipo = tipo;
+        this.numHoteles = 0;
+        this.numCasas = 0;
+        this.titulo = null;
+    }
 
     void setNumHoteles(int numHoteles) {
         this.numHoteles = numHoteles;
@@ -161,12 +171,12 @@ public class Casilla {
         throw new UnsupportedOperationException("sin implementar");
     }
 
-    boolean sePuedeEdificarCasa() {
-        return (numCasas < 4);
+    boolean sePuedeEdificarCasa(int factorEspeculador) {
+        return (numCasas < (4*factorEspeculador));
     }
 
-    boolean sePuedeEdificarHotel() {
-        return (numHoteles < 4 && numCasas == 4);
+    boolean sePuedeEdificarHotel(int factorEspeculador) {
+        return (numHoteles < (4*factorEspeculador) && numCasas == 4);
     }
 
     /**

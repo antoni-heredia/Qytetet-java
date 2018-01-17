@@ -77,7 +77,7 @@ public class Tablero {
         casillas.add(new Casilla(16, 300,
                 new TituloPropiedad("Aulario", 150, (float) 0.16, 550, 600)));
 
-        casillas.add(new Casilla(17, TipoCasilla.IMPUESTO));
+        casillas.add(new Casilla(17, 200, TipoCasilla.IMPUESTO));
 
         casillas.add(new Casilla(18, 200,
                 new TituloPropiedad("Copisteria", 65, (float) 0.18, 475, 625)));

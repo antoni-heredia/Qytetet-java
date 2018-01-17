@@ -46,31 +46,40 @@ public class Qytetet {
 
     public boolean aplicarSorpresa() {
         boolean tienePropietario = false;
-        if (null != cartaActual.getTipo()) switch (cartaActual.getTipo()) {
-            case PAGARCOBRAR:
-                jugadorActual.modificarSaldo(cartaActual.getValor());
-                break;
-            case IRACASILLA:
-                boolean esCarcel = tablero.esCasillaCarcel(cartaActual.getValor());
-                if (esCarcel) {
-                    encarcelarJugador();
-                } else {
-                    Casilla nuevaCasilla = tablero.obtenerCasillaNumero(cartaActual.getValor());
-                    tienePropietario = jugadorActual.actualizarPosicion(nuevaCasilla);
-                }   break;
-            case PORCASAHOTEL:
-                jugadorActual.pagarCobrarPorCasaYHotel(cartaActual.getValor());
-                break;
-            case PORJUGADOR:
-                for (Jugador jugador : jugadores) {
-                    if (jugadorActual != jugador) {
-                        jugador.modificarSaldo(cartaActual.getValor());
-                        jugadorActual.modificarSaldo(-cartaActual.getValor());
+        if (null != cartaActual.getTipo()) {
+            switch (cartaActual.getTipo()) {
+                case PAGARCOBRAR:
+                    jugadorActual.modificarSaldo(cartaActual.getValor());
+                    break;
+                case IRACASILLA:
+                    boolean esCarcel = tablero.esCasillaCarcel(cartaActual.getValor());
+                    if (esCarcel) {
+                        encarcelarJugador();
+                    } else {
+                        Casilla nuevaCasilla = tablero.obtenerCasillaNumero(cartaActual.getValor());
+                        tienePropietario = jugadorActual.actualizarPosicion(nuevaCasilla);
                     }
+                    break;
+                case PORCASAHOTEL:
+                    jugadorActual.pagarCobrarPorCasaYHotel(cartaActual.getValor());
+                    break;
+                case PORJUGADOR:
+                    for (Jugador jugador : jugadores) {
+                        if (jugadorActual != jugador) {
+                            jugador.modificarSaldo(cartaActual.getValor());
+                            jugadorActual.modificarSaldo(-cartaActual.getValor());
+                        }
+
+                    }
+                    break;
+                case CONVERTIRME:
+                    int indice = jugadores.indexOf(jugadorActual);
+                    jugadores.set(indice, jugadorActual.convertirme(cartaActual.getValor()));
                     
-                }   break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (cartaActual.getTipo() == TipoSorpresa.SALIRCARCEL) {
@@ -104,7 +113,7 @@ public class Qytetet {
     public boolean edificarCasa(Casilla casilla) {
         boolean puedoEdificar = false;
         if (casilla.soyEdificable()) {
-            boolean sePuedeEdificar = casilla.sePuedeEdificarCasa();
+            boolean sePuedeEdificar = casilla.sePuedeEdificarCasa(jugadorActual.FactorEspeculador);
             if (sePuedeEdificar) {
                 puedoEdificar = jugadorActual.puedoEdificarCasa(casilla);
                 if (puedoEdificar) {
@@ -120,7 +129,7 @@ public class Qytetet {
     public boolean edificarHotel(Casilla casilla) {
         boolean puedoEdificar = false;
         if (casilla.soyEdificable()) {
-            boolean sePuedeEdificar = casilla.sePuedeEdificarHotel();
+            boolean sePuedeEdificar = casilla.sePuedeEdificarHotel(jugadorActual.FactorEspeculador);
             if (sePuedeEdificar) {
                 puedoEdificar = jugadorActual.puedoEdificarHotel(casilla);
                 if (puedoEdificar) {
@@ -171,7 +180,7 @@ public class Qytetet {
         inicializarCartasSorpresa();
 
         salidaJugadores();
-        
+
     }
 
     public boolean intentarSalirCarcel(MetodoSalirCarcel metodo) {
@@ -217,11 +226,10 @@ public class Qytetet {
      */
     public Hashtable obtenerRanking() {
         Hashtable<String, Integer> ranking = new Hashtable<String, Integer>();
-   
 
         for (Jugador jugador : jugadores) {
             int capital = jugador.obtenerCapital();
-            ranking.put(jugador.getNombre(),capital);
+            ranking.put(jugador.getNombre(), capital);
         }
 
         return ranking;
@@ -248,7 +256,7 @@ public class Qytetet {
      */
     public Jugador siguienteJugador() {
         int posicion_jugador_actual = jugadores.indexOf(jugadorActual);
-        jugadorActual = jugadores.get((posicion_jugador_actual+1) % jugadores.size());
+        jugadorActual = jugadores.get((posicion_jugador_actual + 1) % jugadores.size());
         return jugadorActual;
     }
 
@@ -330,6 +338,13 @@ public class Qytetet {
         mazo.add(new Sorpresa("Tus compañeros te han pillado copiandote. "
                 + "Todos te piden dinero por su silencio. Te toca pagar.",
                 -15, TipoSorpresa.PORJUGADOR));
+
+        mazo.add(new Sorpresa("Has sido aceptado en la facultad de economia. "
+                + "Prearate para ser un gran especulador.",
+                3000, TipoSorpresa.CONVERTIRME));
+        mazo.add(new Sorpresa("Despues de mucho esfuerzo entras a trabajar en banco. "
+                + "Hora de especular.",
+                5000, TipoSorpresa.CONVERTIRME));
         Collections.shuffle(mazo);
     }
 
@@ -342,9 +357,9 @@ public class Qytetet {
         jugadores = new ArrayList(nombres.size());
 
         for (String nombre : nombres) {
-            
+
             jugadores.add(new Jugador(nombre));
-            
+
         }
     }
 
