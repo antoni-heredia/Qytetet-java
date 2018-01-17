@@ -134,7 +134,7 @@ public class Jugador {
         
         if (casilla.getTipo() == TipoCasilla.IMPUESTO) {
             int coste = casilla.getCoste();
-            modificarSaldo(-coste);
+            pagarImpuestos(coste);
         }
         return tienePropietario;
     }
@@ -250,7 +250,7 @@ public class Jugador {
      * @param cantidad
      */
     protected void pagarImpuestos(int cantidad) {
-        
+        modificarSaldo(-cantidad);
     }
     
     protected Especulador convertirme(int fianza) {
