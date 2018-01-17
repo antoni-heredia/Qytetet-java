@@ -122,11 +122,11 @@ public class Jugador {
         if (casilla.soyEdificable()) {
 
             //Si tiene propietario y si no esta encarcelado se cobrara el alquiler
-            tienePropietario = casilla.tengoPropietario();
+            tienePropietario = ((Calle)casilla).tengoPropietario();
             if (tienePropietario) {
-                boolean estaEncarcelado = casilla.propietarioEncarcelado();
+                boolean estaEncarcelado = ((Calle)casilla).propietarioEncarcelado();
                 if (!estaEncarcelado) {
-                    int costeAlquiler = casilla.cobrarAlquiler();
+                    int costeAlquiler = ((Calle)casilla).cobrarAlquiler();
                     modificarSaldo(-costeAlquiler);
                 }
             }
@@ -147,13 +147,13 @@ public class Jugador {
     boolean comprarTitulo() {
         boolean comprar = false;
         if (casillaActual.soyEdificable()) {
-            boolean tengoPropietario = casillaActual.tengoPropietario();
+            boolean tengoPropietario = ((Calle)casillaActual).tengoPropietario();
             
             if (!tengoPropietario) {
                 int costeCompra = casillaActual.getCoste();
                 
                 if (costeCompra <= saldo) {
-                    TituloPropiedad titulo = casillaActual.asignarPropietario(this);
+                    TituloPropiedad titulo = ((Calle)casillaActual).asignarPropietario(this);
                     propiedades.add(titulo);
                     this.modificarSaldo(-costeCompra);
                     comprar = true;
@@ -207,8 +207,9 @@ public class Jugador {
     int obtenerCapital() {
         int capital = saldo;
         for (TituloPropiedad t : propiedades) {
-            capital += t.getCasilla().getCoste();
-            int cant = t.getCasilla().getNumHoteles() + t.getCasilla().getNumCasas();
+            Casilla casilla = t.getCasilla();
+            capital += ((Calle)casilla).getCoste();
+            int cant = ((Calle)casilla).getNumHoteles() + ((Calle)casilla).getNumCasas();
             capital += cant * t.getPrecioEdificar();
             if (t.getHipotecada()) {
                 capital -= t.getHipotecaBase();
@@ -280,7 +281,7 @@ public class Jugador {
     boolean puedoEdificarCasa(Casilla casilla) {
         boolean puedoEficiar = false;
         if (esDeMiPropiedad(casilla)) {
-            int precio = casilla.getPrecioEdificar();
+            int precio = ((Calle)casilla).getPrecioEdificar();
             puedoEficiar = tengoSaldo(precio);
         }
         
@@ -295,7 +296,7 @@ public class Jugador {
     boolean puedoEdificarHotel(Casilla casilla) {
         boolean puedoEficiar = false;
         if (esDeMiPropiedad(casilla)) {
-            int precio = casilla.getPrecioEdificar();
+            int precio = ((Calle)casilla).getPrecioEdificar();
             puedoEficiar = tengoSaldo(precio);
         }
         
@@ -319,7 +320,7 @@ public class Jugador {
      */
     boolean puedoPagarHipoteca(Casilla casilla) {
         boolean puedoPagar = false;
-        if (casilla.getCosteHipoteca() <= saldo && this.esDeMiPropiedad(casilla)) {
+        if (((Calle)casilla).getCosteHipoteca() <= saldo && this.esDeMiPropiedad(casilla)) {
             puedoPagar = true;
         }
         return puedoPagar;
@@ -359,7 +360,7 @@ public class Jugador {
      * @param casilla
      */
     void venderPropiedad(Casilla casilla) {
-        int precioVenta = casilla.venderTitulo();
+        int precioVenta = ((Calle)casilla).venderTitulo();
         modificarSaldo(precioVenta);
         eliminarDeMisPropiedades(casilla);
     }
@@ -371,7 +372,8 @@ public class Jugador {
     private int cuantasCasasHotelTengo() {
         int cantidad = 0;
         for (TituloPropiedad t : propiedades) {
-            cantidad += t.getCasilla().getNumCasas() + t.getCasilla().getNumHoteles();
+            Casilla casilla = t.getCasilla();
+            cantidad += ((Calle)casilla).getNumCasas() + ((Calle)casilla).getNumHoteles();
         }
         return cantidad;
     }
