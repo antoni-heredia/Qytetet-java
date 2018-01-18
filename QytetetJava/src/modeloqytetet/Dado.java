@@ -28,10 +28,12 @@ public class Dado {
      * @return numero de la tirada del dado
      */
     int Tirar(){
+        /*
         Random aleatorio = new Random(System.currentTimeMillis());
         int intAleatorio = aleatorio.nextInt(6) + 1;
         
         return intAleatorio;
-        
+        */
+        return 1;
     }
 }

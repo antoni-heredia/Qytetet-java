@@ -11,9 +11,8 @@ package modeloqytetet;
  */
 public class Especulador extends Jugador {
 
-    static int FactorEspeculador = 2;
     private int fianza;
-
+    static int FactorEspeculador = 2;
     /**
      *
      * @param jugador
@@ -62,5 +61,15 @@ public class Especulador extends Jugador {
         }
         return pagada;
     }
+
+    public static int getFactorEspeculador() {
+        return Especulador.FactorEspeculador;
+    }
+
+    public int getFianza() {
+        return fianza;
+    }
+    
+    
 
 }

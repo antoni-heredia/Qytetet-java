@@ -42,6 +42,12 @@ public class Jugador {
     public boolean getEncarcelado() {
         return encarcelado;
     }
+
+    public static int getFactorEspeculador() {
+        return Jugador.FactorEspeculador;
+    }
+    
+    
     
     public String getNombre() {
         return nombre;
@@ -414,7 +420,7 @@ public class Jugador {
      * @return
      */
     private boolean tengoSaldo(int cantidad) {
-        return (saldo <= cantidad);
+        return (saldo >= cantidad);
     }
 
     /**
