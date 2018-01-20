@@ -7,8 +7,11 @@ package GUIQytetet;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modeloqytetet.Casilla;
+import modeloqytetet.Jugador;
 import modeloqytetet.MetodoSalirCarcel;
 import modeloqytetet.Qytetet;
+import modeloqytetet.TipoCasilla;
 
 /**
  *
@@ -17,6 +20,8 @@ import modeloqytetet.Qytetet;
 public class ControladorQytetet extends javax.swing.JFrame {
 
     private Qytetet modeloQytetet;
+    static Jugador jugador;
+    static Casilla casilla;
 
     /**
      * Creates new form ControladorQytetet
@@ -45,8 +50,18 @@ public class ControladorQytetet extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbJugar.setText("Jugar");
+        jbJugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbJugarActionPerformed(evt);
+            }
+        });
 
         jbComprar.setText("Comprar");
+        jbComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbComprarActionPerformed(evt);
+            }
+        });
 
         jbSalirPagando.setText("Salir de la carcel pagando");
         jbSalirPagando.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +71,11 @@ public class ControladorQytetet extends javax.swing.JFrame {
         });
 
         jbAplicarSorpresa.setText("Aplicar Sorpresa");
+        jbAplicarSorpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAplicarSorpresaActionPerformed(evt);
+            }
+        });
 
         jbSalirTriando.setText("Salir de la carcel tirando el dado");
         jbSalirTriando.addActionListener(new java.awt.event.ActionListener() {
@@ -120,22 +140,56 @@ public class ControladorQytetet extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSalirTriandoActionPerformed
 
     private void jbPasarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPasarTurnoActionPerformed
-        // TODO add your handling code here:
+        jugador = modeloQytetet.siguienteJugador();
+
+        bloquearTodos();
+
+        if (jugador.getEncarcelado()) {
+            jbSalirPagando.setEnabled(true);
+            jbSalirTriando.setEnabled(true);
+        } else {
+            jbJugar.setEnabled(true);
+        }
+        this.vistaQytetet.actualizar(modeloQytetet);
     }//GEN-LAST:event_jbPasarTurnoActionPerformed
 
     private void jbSalirPagandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirPagandoActionPerformed
         boolean resultado = modeloQytetet.intentarSalirCarcel(MetodoSalirCarcel.PAGANDOLIBERTAD);
         this.jbSalirPagando.setEnabled(false);
         this.jbSalirTriando.setEnabled(false);
-        if(resultado){
+        if (resultado) {
             JOptionPane.showMessageDialog(this, "Sales de la carcel");
             this.jbJugar.setEnabled(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Sales de la carcel");
             this.jbPasarTurno.setEnabled(true);
         }
         this.vistaQytetet.actualizar(modeloQytetet);
     }//GEN-LAST:event_jbSalirPagandoActionPerformed
+
+    private void jbJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbJugarActionPerformed
+        boolean tienePropietario = modeloQytetet.jugar();
+        casilla = jugador.getCasillaActual();
+        if (casilla.getTipo() == TipoCasilla.CALLE) {
+            jbComprar.setEnabled(true);
+        } else if (casilla.getTipo() == TipoCasilla.SORPRESA) {
+            jbAplicarSorpresa.setEnabled(true);
+        }
+        jbPasarTurno.setEnabled(true);
+        jbJugar.setEnabled(false);
+        actualizar(modeloQytetet);
+
+    }//GEN-LAST:event_jbJugarActionPerformed
+
+    private void jbComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComprarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbComprarActionPerformed
+
+    private void jbAplicarSorpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAplicarSorpresaActionPerformed
+        modeloQytetet.aplicarSorpresa();
+        bloquearTodos();
+        jbPasarTurno.setEnabled(true);
+    }//GEN-LAST:event_jbAplicarSorpresaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,19 +197,37 @@ public class ControladorQytetet extends javax.swing.JFrame {
     public static void main(String args[]) {
         ControladorQytetet controladorQytetet = new ControladorQytetet();
         CapturaNombreJugadores capturaNombres = new CapturaNombreJugadores(controladorQytetet, true);
-        ArrayList<String> nombres= capturaNombres.obtenerNombres();
+        ArrayList<String> nombres = capturaNombres.obtenerNombres();
+
         Qytetet juego = Qytetet.getInstance();
-        juego.inicializarJuego(nombres);
         Dado.createInstance(controladorQytetet);
-        
+
+        juego.inicializarJuego(nombres);
+        controladorQytetet.bloquearTodos();
+        controladorQytetet.jbJugar.setEnabled(true);
         controladorQytetet.actualizar(juego);
+        jugador = juego.getJugadorActual();
+        casilla = jugador.getCasillaActual();
+
+        //
         controladorQytetet.setVisible(true); //Esta debe ser la última línea de código del main
+    }
+
+    private void bloquearTodos() {
+        this.jbAplicarSorpresa.setEnabled(false);
+        this.jbComprar.setEnabled(false);
+        this.jbJugar.setEnabled(false);
+        this.jbPasarTurno.setEnabled(false);
+        this.jbSalirPagando.setEnabled(false);
+        this.jbSalirTriando.setEnabled(false);
     }
 
     public void actualizar(Qytetet juego) {
         modeloQytetet = juego;
         vistaQytetet.actualizar(juego);
     }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbAplicarSorpresa;
     private javax.swing.JButton jbComprar;

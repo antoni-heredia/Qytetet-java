@@ -35,7 +35,6 @@ public class Qytetet {
     private Jugador jugadorActual;
     private ArrayList<Jugador> jugadores;
     private Tablero tablero;
-
     private Qytetet() {
     }
 
@@ -86,7 +85,7 @@ public class Qytetet {
         } else {
             mazo.add(cartaActual);
         }
-
+        
         return tienePropietario;
     }
 
@@ -358,7 +357,7 @@ public class Qytetet {
                 + "Prearate para ser un gran especulador.",
                 3000, TipoSorpresa.CONVERTIRME));
 
-        //Collections.shuffle(mazo);
+        Collections.shuffle(mazo);
     }
 
     private void inicializarTablero() {
