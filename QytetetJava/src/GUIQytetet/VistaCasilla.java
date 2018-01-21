@@ -56,7 +56,7 @@ public class VistaCasilla extends javax.swing.JPanel {
     
     public void actualizar(String descripcionCasilla){
         this.JtTextoCasilla.setText(descripcionCasilla);
-        this.repaint();;
+        this.repaint();
         this.revalidate();
     }
 

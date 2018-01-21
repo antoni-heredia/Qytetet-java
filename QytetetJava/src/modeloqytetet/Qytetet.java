@@ -86,6 +86,8 @@ public class Qytetet {
             mazo.add(cartaActual);
         }
         
+        cartaActual = null;
+        
         return tienePropietario;
     }
 

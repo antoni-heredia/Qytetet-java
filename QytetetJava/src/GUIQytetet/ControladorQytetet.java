@@ -12,6 +12,7 @@ import modeloqytetet.Jugador;
 import modeloqytetet.MetodoSalirCarcel;
 import modeloqytetet.Qytetet;
 import modeloqytetet.TipoCasilla;
+import modeloqytetet.Calle;
 
 /**
  *
@@ -136,7 +137,17 @@ public class ControladorQytetet extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSalirTriandoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirTriandoActionPerformed
-        // TODO add your handling code here:
+        boolean resultado = modeloQytetet.intentarSalirCarcel(MetodoSalirCarcel.TIRANDODADO);
+        this.jbSalirPagando.setEnabled(false);
+        this.jbSalirTriando.setEnabled(false);
+        if (resultado) {
+            JOptionPane.showMessageDialog(this, "Sales de la carcel");
+            this.jbJugar.setEnabled(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No sales de la carcel");
+            this.jbPasarTurno.setEnabled(true);
+        }
+        this.vistaQytetet.actualizar(modeloQytetet);
     }//GEN-LAST:event_jbSalirTriandoActionPerformed
 
     private void jbPasarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPasarTurnoActionPerformed
@@ -161,7 +172,7 @@ public class ControladorQytetet extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sales de la carcel");
             this.jbJugar.setEnabled(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Sales de la carcel");
+            JOptionPane.showMessageDialog(this, "No sales de la carcel");
             this.jbPasarTurno.setEnabled(true);
         }
         this.vistaQytetet.actualizar(modeloQytetet);
@@ -182,13 +193,26 @@ public class ControladorQytetet extends javax.swing.JFrame {
     }//GEN-LAST:event_jbJugarActionPerformed
 
     private void jbComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComprarActionPerformed
-        // TODO add your handling code here:
+        int saldoAnterior = jugador.getSaldo();
+        boolean puedoComprar = modeloQytetet.comprarTituloPropiedad();
+        if(puedoComprar){
+            int coste = saldoAnterior - jugador.getSaldo();
+            JOptionPane.showMessageDialog(this,"Compra realizada (Coste: " + coste + " Saldo actual: "+ jugador.getSaldo() +")");
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"No se puedo realizar la compra");
+        }
+        jbPasarTurno.setEnabled(true);
+        jbComprar.setEnabled(false);
+        actualizar(modeloQytetet);
+        //actualizar(modeloQytetet);
     }//GEN-LAST:event_jbComprarActionPerformed
 
     private void jbAplicarSorpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAplicarSorpresaActionPerformed
         modeloQytetet.aplicarSorpresa();
         bloquearTodos();
         jbPasarTurno.setEnabled(true);
+        actualizar(modeloQytetet);
     }//GEN-LAST:event_jbAplicarSorpresaActionPerformed
 
     /**

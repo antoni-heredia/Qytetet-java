@@ -163,7 +163,7 @@ public class Jugador {
                     propiedades.add(titulo);
                     this.modificarSaldo(-costeCompra);
                     comprar = true;
-                    System.out.print(saldo + "aaaaa\n" + -costeCompra);
+                    //System.out.print(saldo + "aaaaa\n" + -costeCompra);
                 }
                 
             }

@@ -5,7 +5,10 @@
  */
 package GUIQytetet;
 
+import modeloqytetet.Calle;
+import modeloqytetet.Casilla;
 import modeloqytetet.Qytetet;
+import modeloqytetet.TipoCasilla;
 
 /**
  *
@@ -66,8 +69,15 @@ public class VistaQytetet extends javax.swing.JPanel {
             this.jpCartaSorpresa.actualizar(juego.getCartaActual().toString());
         else
             this.jpCartaSorpresa.actualizar("No hay carta actual");
-  
-        this.jpVistaCasilla.actualizar(juego.getJugadorActual().getCasillaActual().toString());
+        
+        
+        Casilla casilla = juego.getJugadorActual().getCasillaActual();
+        if(casilla.getTipo() != TipoCasilla.CALLE)
+            this.jpVistaCasilla.actualizar(casilla.toString());
+        else
+            this.jpVistaCasilla.actualizar(((Calle)casilla).toString());
+        
+            
         this.jpVistaJugador.actualizar(juego.getJugadorActual().toString());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
