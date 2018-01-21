@@ -24,7 +24,7 @@ public class Jugador {
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.encarcelado = false;
-        this.saldo = 7500;
+        this.saldo = 600;
         propiedades = new ArrayList();
         //casillaActual = Qytetet.getInstance().getTablero().obtenerCasillaNumero(0);
     }

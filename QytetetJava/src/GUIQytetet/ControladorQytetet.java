@@ -6,6 +6,8 @@
 package GUIQytetet;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import javax.swing.JOptionPane;
 import modeloqytetet.Casilla;
 import modeloqytetet.Jugador;
@@ -178,29 +180,36 @@ public class ControladorQytetet extends javax.swing.JFrame {
         this.vistaQytetet.actualizar(modeloQytetet);
     }//GEN-LAST:event_jbSalirPagandoActionPerformed
 
+
     private void jbJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbJugarActionPerformed
         boolean tienePropietario = modeloQytetet.jugar();
-        casilla = jugador.getCasillaActual();
-        if (casilla.getTipo() == TipoCasilla.CALLE) {
-            jbComprar.setEnabled(true);
-        } else if (casilla.getTipo() == TipoCasilla.SORPRESA) {
-            jbAplicarSorpresa.setEnabled(true);
+
+        if (!bancarrota()) {
+            casilla = jugador.getCasillaActual();
+            if (casilla.getTipo() == TipoCasilla.CALLE) {
+                jbComprar.setEnabled(true);
+            } else if (casilla.getTipo() == TipoCasilla.SORPRESA) {
+                jbAplicarSorpresa.setEnabled(true);
+            }
+            jbPasarTurno.setEnabled(true);
+            jbJugar.setEnabled(false);
+            actualizar(modeloQytetet);
+        } else {
+            finDelJuego();
         }
-        jbPasarTurno.setEnabled(true);
-        jbJugar.setEnabled(false);
-        actualizar(modeloQytetet);
+
 
     }//GEN-LAST:event_jbJugarActionPerformed
 
     private void jbComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbComprarActionPerformed
         int saldoAnterior = jugador.getSaldo();
         boolean puedoComprar = modeloQytetet.comprarTituloPropiedad();
-        if(puedoComprar){
+        if (puedoComprar) {
             int coste = saldoAnterior - jugador.getSaldo();
-            JOptionPane.showMessageDialog(this,"Compra realizada (Coste: " + coste + " Saldo actual: "+ jugador.getSaldo() +")");
-            
-        }else{
-            JOptionPane.showMessageDialog(this,"No se puedo realizar la compra");
+            JOptionPane.showMessageDialog(this, "Compra realizada (Coste: " + coste + " Saldo actual: " + jugador.getSaldo() + ")");
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No se puedo realizar la compra");
         }
         jbPasarTurno.setEnabled(true);
         jbComprar.setEnabled(false);
@@ -210,9 +219,14 @@ public class ControladorQytetet extends javax.swing.JFrame {
 
     private void jbAplicarSorpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAplicarSorpresaActionPerformed
         modeloQytetet.aplicarSorpresa();
-        bloquearTodos();
-        jbPasarTurno.setEnabled(true);
-        actualizar(modeloQytetet);
+        if (!bancarrota()) {
+            bloquearTodos();
+            jbPasarTurno.setEnabled(true);
+            actualizar(modeloQytetet);
+        } else {
+            finDelJuego();
+        }
+
     }//GEN-LAST:event_jbAplicarSorpresaActionPerformed
 
     /**
@@ -251,7 +265,25 @@ public class ControladorQytetet extends javax.swing.JFrame {
         vistaQytetet.actualizar(juego);
     }
 
+    private void finDelJuego() {
+        String mensaje = "Hay un jugador en bancarrota, el juego ha finalizado.\nEl ranking es:\n";
+        Hashtable<String, Integer> t = modeloQytetet.obtenerRanking();
 
+        Enumeration<Integer> enumeration = t.elements();
+        Enumeration<String> llaves = t.keys();
+
+        int i = 1;
+        while (enumeration.hasMoreElements()) {
+            mensaje += i + "º: " + llaves.nextElement() + " " + enumeration.nextElement() + "\n";
+            i++;
+        }
+        JOptionPane.showMessageDialog(this, mensaje, "Ranking ", JOptionPane.INFORMATION_MESSAGE);
+        bloquearTodos();
+    }
+
+    private boolean bancarrota() {
+        return jugador.getSaldo() < 0;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbAplicarSorpresa;
     private javax.swing.JButton jbComprar;
